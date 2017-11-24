@@ -7,3 +7,33 @@ CrossEcore comes with a runtime library for every target platform that implement
 The Ecore API provides many of the features that are known from the [Eclipse Modeling Framework](https://www.eclipse.org/modeling/emf/), e.g., persistence, reflection, notifications, switches, factories, referential integrity and validation.
 With the aid of an OCL Compiler, OCL expressions are translated to equivalent expressions of the target programming language.
 CrossEcore’s APIs can be used across platforms almost consistently.
+
+## Persistence
+```csharp
+//Load a model from XMI file:
+var epackage = new XmiResource().Load("./Ecore.ecore") as EPackage;
+```
+## Factory
+```csharp
+//Create EClass instance by using the factory:
+var eclass = EcoreFactoryImpl.eINSTANCE.createEClass();
+```
+
+## Reflection
+```csharp
+//Get the supertypes of an EClass
+var supertypes = eclass.eSuperTypes;
+```
+
+## Notifications
+```csharp
+public class MyAdapter : AdapterImpl
+{
+  public override void notifyChanged(Notification msg)
+  {
+    //do something
+  }
+}
+eclass.eAdapters().Add(new MyAdapter());
+```
+
