@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{670D7030-B3FF-4482-A5A2-FEC055BC32CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ecore</RootNamespace>
+    <AssemblyName>Ecore</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ecore\AbstractCollection.cs" />
+    <Compile Include="Ecore\Adapter.cs" />
+    <Compile Include="Ecore\AdapterImpl.cs" />
+    <Compile Include="Ecore\Bag.cs" />
+    <Compile Include="Ecore\BasicDiagnostic.cs" />
+    <Compile Include="Ecore\BasicEObjectImpl.cs" />
+    <Compile Include="Ecore\BasicNotifierImpl.cs" />
+    <Compile Include="Ecore\Collection.cs" />
+    <Compile Include="Ecore\Diagnostic.cs" />
+    <Compile Include="Ecore\DiagnosticChain.cs" />
+    <Compile Include="Ecore\Diagnostician.cs" />
+    <Compile Include="Ecore\DiagnosticImpl.cs" />
+    <Compile Include="Ecore\EAnnotation.cs" />
+    <Compile Include="Ecore\EAnnotationBase.cs" />
+    <Compile Include="Ecore\EAnnotationImpl.cs" />
+    <Compile Include="Ecore\EAttribute.cs" />
+    <Compile Include="Ecore\EAttributeBase.cs" />
+    <Compile Include="Ecore\EAttributeImpl.cs" />
+    <Compile Include="Ecore\EClass.cs" />
+    <Compile Include="Ecore\EClassBase.cs" />
+    <Compile Include="Ecore\EClassifier.cs" />
+    <Compile Include="Ecore\EClassifierBase.cs" />
+    <Compile Include="Ecore\EClassifierImpl.cs" />
+    <Compile Include="Ecore\EClassImpl.cs" />
+    <Compile Include="Ecore\EcoreEList.cs" />
+    <Compile Include="Ecore\EcoreFactory.cs" />
+    <Compile Include="Ecore\EcoreFactoryImpl.cs" />
+    <Compile Include="Ecore\EcorePackage.cs" />
+    <Compile Include="Ecore\EcorePackageImpl.cs" />
+    <Compile Include="Ecore\EcoreSwitch.cs" />
+    <Compile Include="Ecore\EcoreUtil.cs" />
+    <Compile Include="Ecore\EcoreValidator.cs" />
+    <Compile Include="Ecore\EDataType.cs" />
+    <Compile Include="Ecore\EDataTypeBase.cs" />
+    <Compile Include="Ecore\EDataTypeImpl.cs" />
+    <Compile Include="Ecore\EEnum.cs" />
+    <Compile Include="Ecore\EEnumBase.cs" />
+    <Compile Include="Ecore\EEnumerator.cs" />
+    <Compile Include="Ecore\EEnumImpl.cs" />
+    <Compile Include="Ecore\EEnumLiteral.cs" />
+    <Compile Include="Ecore\EEnumLiteralBase.cs" />
+    <Compile Include="Ecore\EEnumLiteralImpl.cs" />
+    <Compile Include="Ecore\EFactory.cs" />
+    <Compile Include="Ecore\EFactoryBase.cs" />
+    <Compile Include="Ecore\EFactoryImpl.cs" />
+    <Compile Include="Ecore\EGenericType.cs" />
+    <Compile Include="Ecore\EGenericTypeBase.cs" />
+    <Compile Include="Ecore\EGenericTypeImpl.cs" />
+    <Compile Include="Ecore\EModelElement.cs" />
+    <Compile Include="Ecore\EModelElementBase.cs" />
+    <Compile Include="Ecore\EModelElementImpl.cs" />
+    <Compile Include="Ecore\ENamedElement.cs" />
+    <Compile Include="Ecore\ENamedElementBase.cs" />
+    <Compile Include="Ecore\ENamedElementImpl.cs" />
+    <Compile Include="Ecore\ENotificationImpl.cs" />
+    <Compile Include="Ecore\EObject.cs" />
+    <Compile Include="Ecore\EObjectBase.cs" />
+    <Compile Include="Ecore\EObjectImpl.cs" />
+    <Compile Include="Ecore\EObjectValidator.cs" />
+    <Compile Include="Ecore\EOperation.cs" />
+    <Compile Include="Ecore\EOperationBase.cs" />
+    <Compile Include="Ecore\EOperationImpl.cs" />
+    <Compile Include="Ecore\EPackage.cs" />
+    <Compile Include="Ecore\EPackageBase.cs" />
+    <Compile Include="Ecore\EPackageImpl.cs" />
+    <Compile Include="Ecore\EParameter.cs" />
+    <Compile Include="Ecore\EParameterBase.cs" />
+    <Compile Include="Ecore\EParameterImpl.cs" />
+    <Compile Include="Ecore\EReference.cs" />
+    <Compile Include="Ecore\EReferenceBase.cs" />
+    <Compile Include="Ecore\EReferenceImpl.cs" />
+    <Compile Include="Ecore\EStringToStringMapEntry.cs" />
+    <Compile Include="Ecore\EStringToStringMapEntryBase.cs" />
+    <Compile Include="Ecore\EStringToStringMapEntryImpl.cs" />
+    <Compile Include="Ecore\EStructuralFeature.cs" />
+    <Compile Include="Ecore\EStructuralFeatureBase.cs" />
+    <Compile Include="Ecore\EStructuralFeatureImpl.cs" />
+    <Compile Include="Ecore\ETypedElement.cs" />
+    <Compile Include="Ecore\ETypedElementBase.cs" />
+    <Compile Include="Ecore\ETypedElementImpl.cs" />
+    <Compile Include="Ecore\ETypeParameter.cs" />
+    <Compile Include="Ecore\ETypeParameterBase.cs" />
+    <Compile Include="Ecore\ETypeParameterImpl.cs" />
+    <Compile Include="Ecore\EValidator.cs" />
+    <Compile Include="Ecore\InternalEObject.cs" />
+    <Compile Include="Ecore\Map.cs" />
+    <Compile Include="Ecore\Notification.cs" />
+    <Compile Include="Ecore\NotificationChain.cs" />
+    <Compile Include="Ecore\NotificationChainImpl.cs" />
+    <Compile Include="Ecore\NotificationImpl.cs" />
+    <Compile Include="Ecore\Notifier.cs" />
+    <Compile Include="Ecore\NotifyingList.cs" />
+    <Compile Include="Ecore\OclAny.cs" />
+    <Compile Include="Ecore\OclInvalid.cs" />
+    <Compile Include="Ecore\OclVoid.cs" />
+    <Compile Include="Ecore\OrderedSet.cs" />
+    <Compile Include="Ecore\Resource.cs" />
+    <Compile Include="Ecore\ResourceLocator.cs" />
+    <Compile Include="Ecore\Sequence.cs" />
+    <Compile Include="Ecore\Serializer.cs" />
+    <Compile Include="Ecore\Set.cs" />
+    <Compile Include="Ecore\Switch.cs" />
+    <Compile Include="Ecore\TreeIterator.cs" />
+    <Compile Include="Ecore\Tuple.cs" />
+    <Compile Include="Ecore\UnlimitedNatural.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
