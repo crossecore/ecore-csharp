@@ -8,24 +8,25 @@ The Ecore API provides many of the features that are known from the [Eclipse Mod
 With the aid of an OCL Compiler, OCL expressions are translated to equivalent expressions of the target programming language.
 CrossEcore’s APIs can be used across platforms almost consistently.
 
-## Persistence
+## Features
+### Persistence
 ```csharp
 //Load a model from XMI file:
 var epackage = new XmiResource().Load("./Ecore.ecore") as EPackage;
 ```
-## Factory
+### Factory
 ```csharp
 //Create EClass instance by using the factory:
 var eclass = EcoreFactoryImpl.eINSTANCE.createEClass();
 ```
 
-## Reflection
+### Reflection
 ```csharp
 //Get the supertypes of an EClass
 var supertypes = eclass.eSuperTypes;
 ```
 
-## Notifications
+### Notifications
 ```csharp
 public class MyAdapter : AdapterImpl
 {
@@ -36,4 +37,5 @@ public class MyAdapter : AdapterImpl
 }
 eclass.eAdapters().Add(new MyAdapter());
 ```
-
+## Publications
+S. Schwichtenberg, I. Jovanovikj, C. Gerth, and G. Engels, "Poster: CrossEcore: An Extendible Framework to Use Ecore and OCL across Platforms," in Proceedings of the 40th International Conference on Software Engineering, ICSE 2018 - Companion Volume, Gothenburg, Sweden.
