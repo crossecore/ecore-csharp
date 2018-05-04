@@ -143,7 +143,6 @@
     <Compile Include="Ecore\Set.cs" />
     <Compile Include="Ecore\Switch.cs" />
     <Compile Include="Ecore\TreeIterator.cs" />
-    <Compile Include="Ecore\Tuple.cs" />
     <Compile Include="Ecore\UnlimitedNatural.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Xmi\XmiResource.cs" />

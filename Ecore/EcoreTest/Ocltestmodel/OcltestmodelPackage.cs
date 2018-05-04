@@ -1,0 +1,86 @@
+	 	using Ecore;
+namespace Ocltestmodel{
+	public interface OcltestmodelPackage : EPackage {
+			
+		EClass getMyClass();
+		EReference getMyClass_Orderedset();
+		EReference getMyClass_Set();
+		EReference getMyClass_Sequence();
+		EReference getMyClass_Bag();
+		EReference getMyClass_Orderedset_select();
+		EReference getMyClass_Orderedset_at();
+		EReference getMyClass__SelfExp();
+		EReference getMyClass__NullExp();
+		
+		EAttribute getMyClass_Static_sequence();
+		EAttribute getMyClass_Collection_literals();
+		EAttribute getMyClass_Boolean_unequal();
+		EAttribute getMyClass_Boolean_equal();
+		EAttribute getMyClass_Boolean_and();
+		EAttribute getMyClass_Boolean_implies();
+		EAttribute getMyClass_Boolean_not();
+		EAttribute getMyClass_Boolean_or();
+		EAttribute getMyClass_Boolean_xor();
+		EAttribute getMyClass_Boolean_toString();
+		EAttribute getMyClass_Integer_multiplication();
+		EAttribute getMyClass_Integer_addition();
+		EAttribute getMyClass_Integer_subtraction();
+		EAttribute getMyClass_Integer_lessthan();
+		EAttribute getMyClass_Integer_greaterthan();
+		EAttribute getMyClass_Integer_greaterequals();
+		EAttribute getMyClass_Integer_lessequals();
+		EAttribute getMyClass_Integer_division();
+		EAttribute getMyClass_Integer_absolute();
+		EAttribute getMyClass_Integer_maximum();
+		EAttribute getMyClass_Integer_minimum();
+		EAttribute getMyClass_Integer_modulo();
+		EAttribute getMyClass_Integer_toString();
+		EAttribute getMyClass_Real_multiplication();
+		EAttribute getMyClass_Real_addition();
+		EAttribute getMyClass_Real_subtraction();
+		EAttribute getMyClass_Real_lessthan();
+		EAttribute getMyClass_Real_greaterthan();
+		EAttribute getMyClass_Real_greaterequals();
+		EAttribute getMyClass_Real_lessequals();
+		EAttribute getMyClass_Real_division();
+		EAttribute getMyClass_Real_absolute();
+		EAttribute getMyClass_Real_maximum();
+		EAttribute getMyClass_Real_minimum();
+		EAttribute getMyClass_Real_floor();
+		EAttribute getMyClass_Real_toString();
+		EAttribute getMyClass_String_addition();
+		EAttribute getMyClass_String_lessthan();
+		EAttribute getMyClass_String_lessequals();
+		EAttribute getMyClass_String_unequal();
+		EAttribute getMyClass_String_equal();
+		EAttribute getMyClass_String_greaterthan();
+		EAttribute getMyClass_String_greaterequals();
+		EAttribute getMyClass_String_at();
+		EAttribute getMyClass_String_compareTo();
+		EAttribute getMyClass_String_concat();
+		EAttribute getMyClass_String_equalsIgnoreCase();
+		EAttribute getMyClass_String_indexOf();
+		EAttribute getMyClass_String_lastIndexOf();
+		EAttribute getMyClass_String_replaceAll();
+		EAttribute getMyClass_String_size();
+		EAttribute getMyClass_Let2();
+		EAttribute getMyClass_Let3();
+		EAttribute getMyClass_UnEmployed();
+		EAttribute getMyClass_Let();
+		EAttribute getMyClass_Integer_sequence();
+		EAttribute getMyClass_Sequence_selectByKind();
+		EAttribute getMyClass_Sequence_selectByType();
+		EAttribute getMyClass_Tuple_literal();
+		EAttribute getMyClass_Orderedset_size();
+		EAttribute getMyClass_Sequence_count();
+		EAttribute getMyClass__IntegerLiteralExp();
+		EAttribute getMyClass__InfixExp_NOT_PASSING_DUE_TO_BUG_IN_OCLHELPER();
+		EAttribute getMyClass__StringLiteralExp();
+		EAttribute getMyClass__BooleanLiteralExp();
+		EAttribute getMyClass__RealLiteralExp();
+		EAttribute getMyClass__NumberLiteralExp();
+		EAttribute getMyClass__IfExp();
+			
+	 
+	}
+}

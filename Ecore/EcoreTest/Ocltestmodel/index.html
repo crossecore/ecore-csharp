@@ -1,0 +1,1420 @@
+<!doctype html>
+<html lang="de">  
+  <head>    
+    <meta charset="utf-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Package Ocltestmodel
+    </title>    
+    <!-- Latest compiled and minified CSS -->    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">    
+    <!-- Optional theme -->    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">    
+    <!-- Latest compiled and minified JavaScript -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/highlight.js/9.5.0/styles/default.min.css">
+	<style>
+
+	.panel-body > h4{
+	    color: #31708f;
+	    background-color: #d9edf7;
+	    border: 1px solid #bce8f1;
+	    padding: 10px;
+	  
+	}
+	
+	.panel-body > table{
+	  width:100%;
+	  
+	}
+	
+	.panel-body > table td{
+	  padding: 10px;
+	}
+	
+	.panel-body > table th{
+	  padding: 0 10px;
+	}
+	</style>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+
+    <script src="https://cdn.jsdelivr.net/highlight.js/9.5.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+      </head>  
+      <body>  
+        <div class="container">
+        <div class="jumbotron">
+          <h1>Package Ocltestmodel</h1>
+          Version: <br />
+          Date:
+          </p>
+          </div>
+          <!-- METAMODEL -->  
+          <div class="bs-docs-section">        
+            <div class="page-header">          
+              <div class="row">            
+                <div class="col-lg-12">              
+                  <h1>Meta Model</h1>            
+                </div>          
+              </div>        
+            </div>        
+            <div class="row">
+            
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title"><b>EClassifier</b> MyClass</h3>
+     </div>
+<div class="panel-body">
+<h4>Description</h4>
+<p>To be defined.</p>
+<h4>EStructuralFeatures</h4>
+<table class="">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Type</th>
+			<th>Multiplicity</th>
+			<th>Tags</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>static_sequence</td>
+		<td>EBigInteger</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">Sequence{1,2,3}</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>collection_literals</td>
+		<td>EBigInteger</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">Sequence{1,2,3,10..20}</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_unequal</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true <> false</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_equal</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true = false</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_and</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true and true</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_implies</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true implies true</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_not</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">not true</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_or</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true or false</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_xor</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true xor false</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>boolean_toString</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true.toString()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_multiplication</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2*3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_addition</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2+3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_subtraction</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2-3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_lessthan</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2<3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_greaterthan</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2>3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_greaterequals</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2>=3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_lessequals</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2<=3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_division</td>
+		<td>EDouble</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2/3</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_absolute</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.abs()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_maximum</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.max(2)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_minimum</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.min(2)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_modulo</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.mod(2)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_toString</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.toString()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_multiplication</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)*(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_addition</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)+(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_subtraction</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)-(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_lessthan</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)<(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_greaterthan</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0) > (3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_greaterequals</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)>=(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_lessequals</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)<=(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_division</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">(2.0)/(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_absolute</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.0.abs()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_maximum</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.0.max(3.0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_minimum</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.1.min(2.2)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_floor</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.0.floor()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>real_toString</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">2.1.toString()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_addition</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello '+'world'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_lessthan</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a' < 'b'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_lessequals</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a' <= 'b'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_unequal</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a' <> 'b'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_equal</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a' = 'b'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_greaterthan</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a' > 'b'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_greaterequals</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a' >= 'b'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_at</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'a'.at(0)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_compareTo</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">0</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_concat</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello '.concat('world')</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_equalsIgnoreCase</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello '.equalsIgnoreCase('HELLO')</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_indexOf</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello '.indexOf('l')</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_lastIndexOf</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello '.indexOf('l')</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_replaceAll</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello '.replaceAll('h','b')</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>string_size</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'hello'.size()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>let2</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs"> let income : Integer = 13 * 24 in
+				
+								if self.unEmployed then
+								income < 100
+								else
+								income >= 100
+								endif</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>let3</td>
+		<td>EInt</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs"> let income : ecore::EInt = 13 * 24 in
+								income*10</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>unEmployed</td>
+		<td>EBoolean</td>
+		<td>1..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>let</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">let a : String = 'a', b: String = 'b' in a<> b</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>orderedset</td>
+		<td>MyClass</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>set</td>
+		<td>MyClass</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>sequence</td>
+		<td>MyClass</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">ordered</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>integer_sequence</td>
+		<td>EInt</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>bag</td>
+		<td>MyClass</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>sequence_selectByKind</td>
+		<td>EBigInteger</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">Sequence{4, 4, 5.0, 'test'}->selectByKind(Integer)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>sequence_selectByType</td>
+		<td>EBigInteger</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">Sequence{4, 4, 5.0, 'test'}->selectByType(Integer)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>tuple_literal</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">Tuple{first = 3, second = 4} = Tuple{first = 3, second = 4}</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>orderedset_select</td>
+		<td>MyClass</td>
+		<td>0..*</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">orderedset->select(true)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>orderedset_size</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">orderedset->size()</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>sequence_count</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">integer_sequence->count(3)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>orderedset_at</td>
+		<td>MyClass</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">orderedset->at(1)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_SelfExp</td>
+		<td>MyClass</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">self</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_IntegerLiteralExp</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">1</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_InfixExp_NOT_PASSING_DUE_TO_BUG_IN_OCLHELPER</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">1+(2)</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_StringLiteralExp</td>
+		<td>EString</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">'string'</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_BooleanLiteralExp</td>
+		<td>EBoolean</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">true</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_RealLiteralExp</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">1.2</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_NumberLiteralExp</td>
+		<td>EBigDecimal</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">1.2</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_NullExp</td>
+		<td>MyClass</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">null</code></pre>
+			</td>
+		</tr>
+	</tbody>
+	<tr>
+		<td>_IfExp</td>
+		<td>EBigInteger</td>
+		<td>0..1</td>
+		<td>
+			<span class="label label-primary">changeable</span>
+			<span class="label label-primary">derived</span>
+			<span class="label label-primary">ordered</span>
+			<span class="label label-primary">unique</span>
+		</td>
+		<td>Some description</td>
+		</tr>
+		<tr>
+			<td colspan="5">
+				<pre><code class="cs hljs">if true then 1 else 0 endif</code></pre>
+			</td>
+		</tr>
+	</tbody>
+		</table>
+	</div>
+</div>
+
+              
+            </div>        
+          </div>
+        </div>  
+      </body>
+ </html>

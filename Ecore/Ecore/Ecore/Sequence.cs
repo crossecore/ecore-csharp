@@ -36,15 +36,15 @@ namespace oclstdlib
 
         }
 
-        public Set<Ecore.Tuple<T, T2>> product<T2>(Collection<T2> collection)
+        public Set<Tuple<T, T2>> product<T2>(Collection<T2> collection)
         {
 
-            var result = new Set<Ecore.Tuple<T, T2>>();
+            var result = new Set<Tuple<T, T2>>();
             foreach (T first in this)
             {
                 foreach (T2 second in collection)
                 {
-                    var tuple = new Ecore.Tuple<T, T2>(first, second);
+                    var tuple = new Tuple<T, T2>(first, second);
 
                 }
 
@@ -52,21 +52,6 @@ namespace oclstdlib
             return result;
         }
 
-        public Set<System.Tuple<T, T2>> product2<T2>(Collection<T2> collection)
-        {
-
-            var result = new Set<System.Tuple<T, T2>>();
-            foreach (T first in this)
-            {
-                foreach (T2 second in collection)
-                {
-                    var tuple = new System.Tuple<T, T2>(first, second);
-
-                }
-
-            }
-            return result;
-        }
 
         public Sequence<T> union(Collection<T> other)
         {
