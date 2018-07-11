@@ -8,6 +8,11 @@ The Ecore API provides many of the features that are known from the [Eclipse Mod
 With the aid of an OCL Compiler, OCL expressions are translated to equivalent expressions of the target programming language.
 CrossEcore’s APIs can be used across platforms almost consistently.
 
+This package implements the Ecore and OCL API in C#.
+You need this package (1) when you have generated C# code from your own custom Ecore model as it depends on this package or (2) when you want to create Ecore models programmatically.
+
+Java developers that are familiar with the Eclipse Modeling Framework will note that this package corresponds to the original Java package org.eclipse.emf.ecore.
+
 ## Features
 ### Persistence
 ```csharp
