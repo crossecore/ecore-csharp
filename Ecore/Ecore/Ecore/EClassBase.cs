@@ -4,16 +4,24 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EClassBase 
 	:EClassifierImpl, EClass
 	{
+		private bool _abstract = false;
+		public virtual bool abstract_
+		{
+		get { 
+			return _abstract;
+		}
+		set { _abstract = value; }
+		}
 		private bool _interface = false;
 		public virtual bool interface_
 		{
@@ -22,13 +30,53 @@ namespace Ecore{
 		}
 		set { _interface = value; }
 		}
-		private bool _abstract = false;
-		public virtual bool abstract_
+		
+		public virtual OrderedSet<EAttribute> eAllAttributes
 		{
-		get { 
-			return _abstract;
+			get {
+				//TODO implement derivation
+				return default(OrderedSet<EAttribute>);
+			}
+		
 		}
-		set { _abstract = value; }
+		
+		public virtual OrderedSet<EOperation> eAllOperations
+		{
+			get {
+				//TODO implement derivation
+				return default(OrderedSet<EOperation>);
+			}
+		
+		}
+		
+		public virtual OrderedSet<EReference> eAllContainments
+		{
+			get {
+				//TODO implement derivation
+				return default(OrderedSet<EReference>);
+			}
+		
+		}
+		private OrderedSet<EStructuralFeature> _eStructuralFeatures;
+		
+		public virtual OrderedSet<EStructuralFeature> eStructuralFeatures
+		{
+			get {
+				if(_eStructuralFeatures==null){
+					_eStructuralFeatures = new OrderedSet<EStructuralFeature>(this, EcorePackageImpl.ECLASS_ESTRUCTURALFEATURES, EcorePackageImpl.ESTRUCTURALFEATURE_ECONTAININGCLASS);
+				}
+				return _eStructuralFeatures;
+			}
+		
+		}
+		
+		public virtual OrderedSet<EClass> eAllSuperTypes
+		{
+			get {
+				//TODO implement derivation
+				return default(OrderedSet<EClass>);
+			}
+		
 		}
 		
 		public virtual OrderedSet<EReference> eReferences
@@ -39,17 +87,13 @@ namespace Ecore{
 			}
 		
 		}
-		private OrderedSet<EOperation> _eOperations;
-		
-		public virtual OrderedSet<EOperation> eOperations
+		public virtual EAttribute eIDAttribute
 		{
 			get {
-				if(_eOperations==null){
-					_eOperations = new OrderedSet<EOperation>(this, EcorePackageImpl.ECLASS_EOPERATIONS, EcorePackageImpl.EOPERATION_ECONTAININGCLASS);
-				}
-				return _eOperations;
+			
+				//TODO implement derivation
+				return default(EAttribute);
 			}
-		
 		}
 		
 		public virtual OrderedSet<EReference> eAllReferences
@@ -69,59 +113,6 @@ namespace Ecore{
 			}
 		
 		}
-		
-		public virtual OrderedSet<EOperation> eAllOperations
-		{
-			get {
-				//TODO implement derivation
-				return default(OrderedSet<EOperation>);
-			}
-		
-		}
-		
-		public virtual OrderedSet<EAttribute> eAllAttributes
-		{
-			get {
-				//TODO implement derivation
-				return default(OrderedSet<EAttribute>);
-			}
-		
-		}
-		
-		public virtual OrderedSet<EReference> eAllContainments
-		{
-			get {
-				//TODO implement derivation
-				return default(OrderedSet<EReference>);
-			}
-		
-		}
-		
-		public virtual OrderedSet<EClass> eAllSuperTypes
-		{
-			get {
-				//TODO implement derivation
-				return default(OrderedSet<EClass>);
-			}
-		
-		}
-		
-		public virtual OrderedSet<EStructuralFeature> eAllStructuralFeatures
-		{
-			get {
-				//TODO implement derivation
-				return default(OrderedSet<EStructuralFeature>);
-			}
-		
-		}
-		public virtual EAttribute eIDAttribute
-		{
-			get {
-			
-				//TODO implement derivation
-				return default(EAttribute);
-			}
-		}
 		private OrderedSet<EClass> _eSuperTypes;
 		
 		public virtual OrderedSet<EClass> eSuperTypes
@@ -134,15 +125,12 @@ namespace Ecore{
 			}
 		
 		}
-		private OrderedSet<EStructuralFeature> _eStructuralFeatures;
 		
-		public virtual OrderedSet<EStructuralFeature> eStructuralFeatures
+		public virtual OrderedSet<EStructuralFeature> eAllStructuralFeatures
 		{
 			get {
-				if(_eStructuralFeatures==null){
-					_eStructuralFeatures = new OrderedSet<EStructuralFeature>(this, EcorePackageImpl.ECLASS_ESTRUCTURALFEATURES, EcorePackageImpl.ESTRUCTURALFEATURE_ECONTAININGCLASS);
-				}
-				return _eStructuralFeatures;
+				//TODO implement derivation
+				return default(OrderedSet<EStructuralFeature>);
 			}
 		
 		}
@@ -167,6 +155,51 @@ namespace Ecore{
 			}
 		
 		}
+		private OrderedSet<EOperation> _eOperations;
+		
+		public virtual OrderedSet<EOperation> eOperations
+		{
+			get {
+				if(_eOperations==null){
+					_eOperations = new OrderedSet<EOperation>(this, EcorePackageImpl.ECLASS_EOPERATIONS, EcorePackageImpl.EOPERATION_ECONTAININGCLASS);
+				}
+				return _eOperations;
+			}
+		
+		}
+		public virtual int getFeatureCount()
+		{
+		    throw new NotImplementedException();
+		}
+		public virtual bool isSuperTypeOf(EClass someClass
+		)
+		{
+		    throw new NotImplementedException();
+		}
+		public virtual int getOperationCount()
+		{
+		    throw new NotImplementedException();
+		}
+		public virtual int getFeatureID(EStructuralFeature feature
+		)
+		{
+		    throw new NotImplementedException();
+		}
+		public virtual EOperation getEOperation(int operationID
+		)
+		{
+		    throw new NotImplementedException();
+		}
+		public virtual EStructuralFeature getEStructuralFeature(int featureID
+		)
+		{
+		    throw new NotImplementedException();
+		}
+		public virtual EOperation getOverride(EOperation operation
+		)
+		{
+		    throw new NotImplementedException();
+		}
 		public virtual EGenericType getFeatureType(EStructuralFeature feature
 		)
 		{
@@ -182,45 +215,6 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-		public virtual int getOperationCount()
-		{
-		    throw new NotImplementedException();
-		}
-		public virtual EOperation getOverride(EOperation operation
-		)
-		{
-		    throw new NotImplementedException();
-		}
-		public virtual int getFeatureCount()
-		{
-		    throw new NotImplementedException();
-		}
-		public virtual bool isSuperTypeOf(EClass someClass
-		)
-		{
-		    throw new NotImplementedException();
-		}
-		public virtual EOperation getEOperation(int operationID
-		)
-		{
-		    throw new NotImplementedException();
-		}
-		public virtual int getFeatureID(EStructuralFeature feature
-		)
-		{
-		    throw new NotImplementedException();
-		}
-		public virtual EStructuralFeature getEStructuralFeature(int featureID
-		)
-		{
-		    throw new NotImplementedException();
-		}
-	
-		/*
-		public static Set<EClass> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.ECLASS;
@@ -228,20 +222,20 @@ namespace Ecore{
 		
 		public override NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 			switch (featureID) {
-				case EcorePackageImpl.ECLASS_EOPERATIONS:
-					return eOperations.basicAdd((EOperation)otherEnd, msgs);
 				case EcorePackageImpl.ECLASS_ESTRUCTURALFEATURES:
 					return eStructuralFeatures.basicAdd((EStructuralFeature)otherEnd, msgs);
+				case EcorePackageImpl.ECLASS_EOPERATIONS:
+					return eOperations.basicAdd((EOperation)otherEnd, msgs);
 			}
 			return base.eInverseAdd(otherEnd, featureID, msgs);
 		}
 		
 		public override NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 			switch (featureID) {
-				case EcorePackageImpl.ECLASS_EOPERATIONS:
-					return eOperations.basicRemove((EOperation)otherEnd, msgs);
 				case EcorePackageImpl.ECLASS_ESTRUCTURALFEATURES:
 					return eStructuralFeatures.basicRemove((EStructuralFeature)otherEnd, msgs);
+				case EcorePackageImpl.ECLASS_EOPERATIONS:
+					return eOperations.basicRemove((EOperation)otherEnd, msgs);
 			}
 			return base.eInverseRemove(otherEnd, featureID, msgs);
 		}
@@ -346,6 +340,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

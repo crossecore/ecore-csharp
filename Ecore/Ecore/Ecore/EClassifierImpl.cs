@@ -91,6 +91,24 @@ namespace Ecore
             */
         }
 
+        public override int getClassifierID()
+        {
+            if (metaObjectID == -1)
+            {
+                metaObjectID = computeClassifierID();
+            }
+            return metaObjectID;
+        }
+
+        private int computeClassifierID()
+        {
+            return
+
+              ePackage != null ?
+                ePackage.eClassifiers.indexOf(this) :
+                -1;
+        }
+
     }
 
 }

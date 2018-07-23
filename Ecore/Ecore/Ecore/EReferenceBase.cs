@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EReferenceBase 
 	:EStructuralFeatureImpl, EReference
@@ -52,14 +52,6 @@ namespace Ecore{
 				}
 				}
 		}
-		public virtual EClass eReferenceType
-		{
-			get {
-			
-				//TODO implement derivation
-				return default(EClass);
-			}
-		}
 		private OrderedSet<EAttribute> _eKeys;
 		
 		public virtual OrderedSet<EAttribute> eKeys
@@ -72,12 +64,14 @@ namespace Ecore{
 			}
 		
 		}
-	
-		/*
-		public static Set<EReference> allInstances(){
-			throw new NotImplementedException();
+		public virtual EClass eReferenceType
+		{
+			get {
+			
+				//TODO implement derivation
+				return default(EClass);
+			}
 		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EREFERENCE;
@@ -215,6 +209,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

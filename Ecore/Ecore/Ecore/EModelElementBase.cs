@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EModelElementBase 
 	:BasicEObjectImpl, EModelElement
@@ -31,12 +31,6 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EModelElement> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EMODELELEMENT;
@@ -77,6 +71,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

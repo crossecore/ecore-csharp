@@ -4,7 +4,8 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-using System.Collections.Generic;
+ 
+	 	using System.Collections.Generic;
 namespace Ecore{
 	public class EcoreValidator : EObjectValidator {
 	

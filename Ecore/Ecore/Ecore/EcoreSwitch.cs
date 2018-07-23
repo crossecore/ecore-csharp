@@ -4,9 +4,8 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
-namespace Ecore
-{
+ 
+namespace Ecore{
 	public class EcoreSwitch<T> : Switch<T> {
 	
 		protected static EcorePackage modelPackage;
@@ -30,6 +29,10 @@ namespace Ecore
 					var eattribute = (EAttribute) theEObject;
 					var result = caseEAttribute(eattribute);
 					
+					if (result == null) result = caseEModelElement(eattribute);
+					if (result == null) result = caseENamedElement(eattribute);
+					if (result == null) result = caseETypedElement(eattribute);
+					if (result == null) result = caseEStructuralFeature(eattribute);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -47,6 +50,9 @@ namespace Ecore
 					var eclass = (EClass) theEObject;
 					var result = caseEClass(eclass);
 					
+					if (result == null) result = caseEModelElement(eclass);
+					if (result == null) result = caseENamedElement(eclass);
+					if (result == null) result = caseEClassifier(eclass);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -55,6 +61,8 @@ namespace Ecore
 					var eclassifier = (EClassifier) theEObject;
 					var result = caseEClassifier(eclassifier);
 					
+					if (result == null) result = caseEModelElement(eclassifier);
+					if (result == null) result = caseENamedElement(eclassifier);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -63,6 +71,9 @@ namespace Ecore
 					var edatatype = (EDataType) theEObject;
 					var result = caseEDataType(edatatype);
 					
+					if (result == null) result = caseEModelElement(edatatype);
+					if (result == null) result = caseENamedElement(edatatype);
+					if (result == null) result = caseEClassifier(edatatype);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -71,6 +82,10 @@ namespace Ecore
 					var eenum = (EEnum) theEObject;
 					var result = caseEEnum(eenum);
 					
+					if (result == null) result = caseEModelElement(eenum);
+					if (result == null) result = caseENamedElement(eenum);
+					if (result == null) result = caseEClassifier(eenum);
+					if (result == null) result = caseEDataType(eenum);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -79,6 +94,8 @@ namespace Ecore
 					var eenumliteral = (EEnumLiteral) theEObject;
 					var result = caseEEnumLiteral(eenumliteral);
 					
+					if (result == null) result = caseEModelElement(eenumliteral);
+					if (result == null) result = caseENamedElement(eenumliteral);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -121,6 +138,9 @@ namespace Ecore
 					var eoperation = (EOperation) theEObject;
 					var result = caseEOperation(eoperation);
 					
+					if (result == null) result = caseEModelElement(eoperation);
+					if (result == null) result = caseENamedElement(eoperation);
+					if (result == null) result = caseETypedElement(eoperation);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -129,6 +149,8 @@ namespace Ecore
 					var epackage = (EPackage) theEObject;
 					var result = caseEPackage(epackage);
 					
+					if (result == null) result = caseEModelElement(epackage);
+					if (result == null) result = caseENamedElement(epackage);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -137,6 +159,9 @@ namespace Ecore
 					var eparameter = (EParameter) theEObject;
 					var result = caseEParameter(eparameter);
 					
+					if (result == null) result = caseEModelElement(eparameter);
+					if (result == null) result = caseENamedElement(eparameter);
+					if (result == null) result = caseETypedElement(eparameter);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -145,6 +170,10 @@ namespace Ecore
 					var ereference = (EReference) theEObject;
 					var result = caseEReference(ereference);
 					
+					if (result == null) result = caseEModelElement(ereference);
+					if (result == null) result = caseENamedElement(ereference);
+					if (result == null) result = caseETypedElement(ereference);
+					if (result == null) result = caseEStructuralFeature(ereference);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -153,6 +182,9 @@ namespace Ecore
 					var estructuralfeature = (EStructuralFeature) theEObject;
 					var result = caseEStructuralFeature(estructuralfeature);
 					
+					if (result == null) result = caseEModelElement(estructuralfeature);
+					if (result == null) result = caseENamedElement(estructuralfeature);
+					if (result == null) result = caseETypedElement(estructuralfeature);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -161,6 +193,8 @@ namespace Ecore
 					var etypedelement = (ETypedElement) theEObject;
 					var result = caseETypedElement(etypedelement);
 					
+					if (result == null) result = caseEModelElement(etypedelement);
+					if (result == null) result = caseENamedElement(etypedelement);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;
@@ -185,6 +219,8 @@ namespace Ecore
 					var etypeparameter = (ETypeParameter) theEObject;
 					var result = caseETypeParameter(etypeparameter);
 					
+					if (result == null) result = caseEModelElement(etypeparameter);
+					if (result == null) result = caseENamedElement(etypeparameter);
 					
 					if (result == null) result = defaultCase(theEObject);
 					return result;

@@ -4,24 +4,16 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EEnumLiteralBase 
 	:ENamedElementImpl, EEnumLiteral
 	{
-		private EEnumerator _instance = null;
-		public virtual EEnumerator instance
-		{
-		get { 
-			return _instance;
-		}
-		set { _instance = value; }
-		}
 		private string _literal = "";
 		public virtual string literal
 		{
@@ -29,6 +21,14 @@ namespace Ecore{
 			return _literal;
 		}
 		set { _literal = value; }
+		}
+		private EEnumerator _instance = null;
+		public virtual EEnumerator instance
+		{
+		get { 
+			return _instance;
+		}
+		set { _instance = value; }
 		}
 		private int _value = 0;
 		public virtual int value
@@ -46,12 +46,6 @@ namespace Ecore{
 				return (EEnum)eInternalContainer();
 			}
 		}
-	
-		/*
-		public static Set<EEnumLiteral> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EENUMLITERAL;
@@ -121,6 +115,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class ETypeParameterBase 
 	:ENamedElementImpl, ETypeParameter
@@ -26,12 +26,6 @@ namespace Ecore{
 			}
 		
 		}
-	
-		/*
-		public static Set<ETypeParameter> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.ETYPEPARAMETER;
@@ -68,6 +62,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

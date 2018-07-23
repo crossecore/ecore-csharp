@@ -4,18 +4,17 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	
 	public interface EGenericType 
 	: EObject
 	{
-		
 		EGenericType eUpperBound
 		{
 			get;
@@ -26,24 +25,20 @@ namespace Ecore{
 			get;
 		
 		}
-		
 		EClassifier eRawType
 		{
 			get;
 		}
-		
 		EGenericType eLowerBound
 		{
 			get;
 			set;
 		}
-		
 		ETypeParameter eTypeParameter
 		{
 			get;
 			set;
 		}
-		
 		EClassifier eClassifier
 		{
 			get;

@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	
 	public interface ETypedElement 
@@ -43,13 +43,11 @@ namespace Ecore{
 		{
 			get;
 		}
-		
 		EClassifier eType
 		{
 			get;
 			set;
 		}
-		
 		EGenericType eGenericType
 		{
 			get;

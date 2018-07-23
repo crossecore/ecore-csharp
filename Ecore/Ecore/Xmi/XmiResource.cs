@@ -5,7 +5,9 @@
  * contributor: Simon Schwichtenberg
  */
 
+using oclstdlib;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,216 +20,335 @@ namespace Ecore.Xmi
     public class XmiResource
     {
 
-        private EPackage epackage;
+        private EFactory factory = EcoreFactoryImpl.eINSTANCE;//TODO make dynamic registry
 
-        private Dictionary<EObject, EStructuralFeature> resolveFeature = new Dictionary<EObject, EStructuralFeature>();
-        private Dictionary<EObject, string> resolvePath = new Dictionary<EObject, string>();
-        //private Dictionary<string, EObject> resolvedEObject = new Dictionary<string, EObject>();
+        private EPackage epackage = EcorePackageImpl.eINSTANCE;//TODO make dynamic registry
 
-        private Dictionary<System.Tuple<EObject, EStructuralFeature>, string> resolve = new Dictionary<System.Tuple<EObject, EStructuralFeature>, string>();
+        private EObject root;
 
-        public EObject Load(string path) {
+        private List<Tuple<EObject, EStructuralFeature, String>> resolveJobs = new List<Tuple<EObject, EStructuralFeature, String>>();
+
+
+        public void Save(string path)
+        {
+            saveRecurr(root, null);
+        }
+
+        private string getFragment(EObject eobject)
+        {
+
+            EAttribute idfeature = eobject.eClass().eIDAttribute;
+
+            return $"#//{eobject.eGet(idfeature)}";
+        }
+
+
+        private void saveRecurr(EObject eobject, EReference relation)
+        {
+            if (eobject == null)
+            {
+                return;
+            }
+
+            var xmlAttributes = new Dictionary<string, string>();
+
+            //xsi:type="ecore:EAttribute"
+
+            var eclass = eobject.eClass();
+            var epackag = eclass.ePackage;
+
+            if (epackag == null)
+            {
+                return;
+            }
+            var prefix = epackag.nsPrefix;
+
+            xmlAttributes["xsi:type"] = eobject.eClass().ePackage.nsPrefix + ":" + eobject.eClass().name;
+
+            foreach (EStructuralFeature feature in eobject.eClass().eAllStructuralFeatures)
+            {
+
+                if (feature is EReference)
+                {
+
+                    var erference = feature as EReference;
+
+                    if (erference.many)
+                    {
+                        //TODO
+                    }
+                    else
+                    {
+                        var value = eobject.eGet(erference) as EObject;
+                        if (value != null)
+                        {
+                            xmlAttributes[erference.name] = getFragment(value);
+                        }
+
+                    }
+
+                    if (erference.containment)
+                    {
+                        var child = eobject.eGet(erference);
+
+                        if (child != null)
+                        {
+                            if (erference.many)
+                            {
+                                var list = (IList)child;
+
+                                var list2 = list.Cast<EObject>();
+                                foreach (EObject c in list)
+                                {
+                                    saveRecurr(c, erference);
+                                }
+                            }
+                            else
+                            {
+
+                                saveRecurr(child as EObject, erference);//TODO is casting safe here?
+
+                            }
+                        }
+
+                    }
+
+                }
+                else if (feature is EAttribute)
+                {
+                    var eattribute = feature as EAttribute;
+
+                    if (!eattribute.transient && !eattribute.derived && eattribute.defaultValue != eobject.eGet(eattribute))
+                    {
+                        //TODO many
+
+                        xmlAttributes[eattribute.name] = eobject.eGet(eattribute).ToString();
+                    }
+
+                }
+            }
+
+            if (relation != null)
+            {
+                var sb = new StringBuilder();
+                sb.Append($"<{relation.name}");
+                foreach (String key in xmlAttributes.Keys)
+                {
+                    sb.Append($"{key}=\"{xmlAttributes[key]}\"");
+                }
+                sb.Append($">");
+                //TODO childs
+                sb.Append($"</{relation.name}>");
+                Console.WriteLine(sb.ToString());
+            }
+
+
+        }
+
+
+        public EObject Load(string path)
+        {
             var doc = new XmlDocument();
             doc.Load(path);
 
-            handleEPackage(doc.DocumentElement);
+            rootnode(doc.DocumentElement);
 
+            lateResolve();
 
             return epackage;
         }
 
-        public EAnnotation handleEAnnotation(XmlNode node)
-        {
-            var eannotation = EcoreFactoryImpl.eINSTANCE.createEAnnotation();
-            eannotation.source = node.Attributes["source"]?.InnerText;
 
-            foreach (XmlNode child in node.ChildNodes)
+        public void lateResolve()
+        {
+            foreach (Tuple<EObject, EStructuralFeature, String> job in resolveJobs)
             {
 
-                if (child.LocalName == "details")
+
+                var eobject = job.Item1;
+                var feature = job.Item2;
+                var path = job.Item3;
+
+
+                if (!feature.many)
                 {
-                    var eStringToStringMapEntry = handleEStringToStringMapEntry(child);
-                    eannotation.details.add(eStringToStringMapEntry);
+                    eobject.eSet(feature, resolveEObject(path));
+                }
+                else if (feature.many)
+                {
+                    eobject.eSet(feature, resolveEList(path));
+                }
+
+
+            }
+        }
+
+
+
+        private void addEStructuralFeatures(EObject eobject, XmlNode node)
+        {
+
+            foreach (XmlAttribute attribute in node.Attributes)
+            {
+                var name = attribute.Name;
+                var estructuralfeature = eobject.eClass().getEStructuralFeature(name);
+
+                if (estructuralfeature is EAttribute)
+                {
+                    if (!estructuralfeature.many)
+                    {
+                        var etype = estructuralfeature.eType;
+                        var value = attribute.InnerText;
+
+                        if (etype?.ePackage?.nsURI == "http://www.eclipse.org/emf/2002/Ecore")
+                        {
+
+                            if (etype.name == "EBoolean")
+                            {
+                                eobject.eSet(estructuralfeature, value == "true" ? true : false);
+                            }
+                            else if (etype.name == "EInt")
+                            {
+                                eobject.eSet(estructuralfeature, Int32.Parse(value));
+                            }
+                            else if (etype.name == "EString")
+                            {
+                                eobject.eSet(estructuralfeature, value);
+                            }
+                        }
+
+                    }
+                    else if (estructuralfeature.many)
+                    {
+
+                    }
+                }
+                else if (estructuralfeature is EReference)
+                {
+                    resolveJobs.Add(new Tuple<EObject, EStructuralFeature, String>(eobject, estructuralfeature, attribute.InnerText));
 
                 }
 
             }
-            return eannotation;
-        }
 
-        public EStringToStringMapEntry handleEStringToStringMapEntry(XmlNode node) {
-
-            var estringtostringmapentry = EcoreFactoryImpl.eINSTANCE.createEStringToStringMapEntry();
-            estringtostringmapentry.key = node.Attributes["key"]?.InnerText;
-            estringtostringmapentry.value = node.Attributes["value"]?.InnerText;
-            return estringtostringmapentry;
-        }
-
-        public EPackage handleEPackage(XmlNode node)
-        {
-            epackage = EcoreFactoryImpl.eINSTANCE.createEPackage();
-            epackage.name = node.Attributes["name"]?.InnerText;
-            epackage.nsPrefix = node.Attributes["name"]?.InnerText;
-            epackage.nsURI = node.Attributes["nsURI"]?.InnerText;
-
-
-            EClassifier eclassifier = null;
 
             foreach (XmlNode child in node.ChildNodes)
             {
-                if (child.LocalName == "eClassifiers" && child.Attributes["xsi:type"].InnerText == "ecore:EClass")
+                var containment_name = child.Name;
+                var containment = eobject.eClass().getEStructuralFeature(containment_name);
+
+                if (containment is EReference)
                 {
-                    eclassifier = handleEClass(child);
-                    epackage.eClassifiers.add(eclassifier);
+
+                    var containment_er = containment as EReference;
+                    if (containment_er.containment)
+                    {
+
+                        var classifierId2 = containment.eType.name;
+
+                        if (child.Attributes["xsi:type"] != null)
+                        {
+                            //use xsi:type to declare a more specific type that is declared in EType of the EReference
+                            classifierId2 = child.Attributes["xsi:type"]?.InnerText?.Split(':')[1];//TODO there might be more elegant ways
+                        }
+
+                        var eclassifier2 = epackage.getEClassifier(classifierId2);
+
+                        if (eclassifier2 is EClass)
+                        {
+
+                            if (containment_er.eType.name == "EStringToStringMapEntry")
+                            {
+                                //new EcoreEMap<string, string> x = new EcoreEMap<string, string>(containment_er.eType as EClass, containment_er.eType.instanceClass, eobject as InternalEObject, containment_er.getFeatureID());
 
 
-                }
-                else if (child.LocalName == "eClassifiers" && child.Attributes["xsi:type"].InnerText == "ecore:EDataType")
-                {
-                    eclassifier = handleEDataType(child);
-                    epackage.eClassifiers.add(eclassifier);
 
-                }
-                else if (child.LocalName == "eClassifiers" && child.Attributes["xsi:type"].InnerText == "ecore:EEnum")
-                {
-                    eclassifier = handleEEnum(child);
-                    epackage.eClassifiers.add(eclassifier);
+                                var key = child.Attributes["key"].InnerText;
+                                var value = child.Attributes["value"].InnerText;
 
-                }
-                else if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    epackage.eAnnotations.add(eannotation);
+                                dynamic bla = eobject;
 
-                }
+                                //FIXME why is eGet(containment_er) not working?
 
-            }
+                                dynamic map = bla.eGet(containment_er);
+                                //var map = bla.eGet(containment_er.getFeatureID(), false, false);
+                                //var ecoremap = map as EcoreEMap<string, string>;
 
 
-            foreach (System.Tuple<EObject, EStructuralFeature> pair in resolve.Keys)
-            {
-                var eobject = pair.Item1;
-                var estructuralfeature = pair.Item2;
-                var path = resolve[pair];
 
-                
+                                //https://stackoverflow.com/questions/19283349/c-sharp-generics-wildcards
+                                map.put(key, value);
+                            }
+                            else
+                            {
+                                var eclass2 = eclassifier2 as EClass;
+                                var eobject2 = factory.create(eclass2);
 
-                if (estructuralfeature.many)
-                {
-                    var target = resolveEList(path);
-                    eobject.eSet(estructuralfeature, target);
+                                if (containment_er.many)
+                                {
+                                    addEStructuralFeatures(eobject2, child);
+
+                                    var list = new List<EObject>();
+                                    list.Add(eobject2);
+                                    eobject.eSet(containment_er, list);
+                                }
+                                else
+                                {
+                                    addEStructuralFeatures(eobject2, child);
+
+                                    eobject.eSet(containment_er, eobject2);
+                                }
+
+                            }
+
+                        }
+
+                    }
+                    else
+                    {
+                        //TODO error
+                    }
+
                 }
                 else
                 {
-                    var target = resolveEObject(path);
-                    eobject.eSet(estructuralfeature, target);
+                    //TODO error
                 }
 
-                
             }
-
-            return epackage;
         }
 
-        public string caseEPackage(EPackage epackage)
-        {
-            return $"<ecore:EPackage xmi:version=\"2.0\" xmlns:xmi=\"http://www.omg.org/XMI\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns: ecore = \"http://www.eclipse.org/emf/2002/Ecore\" name = \"{epackage.name}\" nsURI = \"{epackage.nsURI}\" nsPrefix = \"{epackage.nsPrefix}\" >";
-        }
-
-
-        public EDataType handleEDataType(XmlNode node)
+        public EObject rootnode(XmlNode node)
         {
 
-            var edatatype = EcoreFactoryImpl.eINSTANCE.createEDataType();
+
+            //TODO split ns prefix
+            var classifierId = node.Name.Split(':')[1];//localname?
 
 
-            edatatype.name = node.Attributes["name"]?.InnerText;
+            //var classifierId = node.Attributes["xsi:type"].InnerText;// == "ecore:EClass";
 
-            edatatype.serializable = getBoolean(node.Attributes["serializable"]?.InnerText, edatatype.serializable);
-            edatatype.instanceTypeName = node.Attributes["instanceTypeName"]?.InnerText;
+            var eclassifier = epackage.getEClassifier(classifierId);
 
-            foreach (XmlNode child in node.ChildNodes)
+
+            if (eclassifier is EClass)
             {
-                if (child.LocalName == "eTypeParameters")
-                {
-                    var etypeparameter = handleETypeParameter(child);
-                    edatatype.eTypeParameters.add(etypeparameter);
-                }
-                else if (child.LocalName == "eAnnotations")
-                {
+                var eclass = eclassifier as EClass;
+                root = factory.create(eclass);
 
-                    var eannotation = handleEAnnotation(child);
-                    epackage.eAnnotations.add(eannotation);
+                addEStructuralFeatures(root, node);
 
-                }
 
             }
 
-            return edatatype;
-        }
-    
 
 
-        private void register(EObject eobject, EStructuralFeature estructuralfeature, string path)
-        {
-            var pair = new System.Tuple<EObject, EStructuralFeature>(eobject, estructuralfeature);
-
-            resolve.Add(pair, path);
-
+            return root;
 
         }
 
 
-        public EClass handleEClass(XmlNode node)
-        {
 
-            var eclass = EcoreFactoryImpl.eINSTANCE.createEClass();
-            
-            eclass.name = node.Attributes["name"]?.InnerText;
-            eclass.abstract_ = getBoolean(node.Attributes["abstract"]?.InnerText, eclass.abstract_);
-            eclass.interface_ = getBoolean(node.Attributes["interface"]?.InnerText, eclass.interface_);
-
-            register(eclass, EcorePackageImpl.Literals.ECLASS_ESUPERTYPES, node.Attributes["eSuperTypes"]?.InnerText);
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName == "eStructuralFeatures" && child.Attributes["xsi:type"]?.InnerText == "ecore:EReference")
-                {
-                    var estructuralfeature = handleEReference(child);
-                    eclass.eStructuralFeatures.add(estructuralfeature);
-                }
-                else if (child.LocalName == "eStructuralFeatures" && child.Attributes["xsi:type"]?.InnerText == "ecore:EAttribute")
-                {
-                    var estructuralfeature = handleEAttribute(child);
-                    eclass.eStructuralFeatures.add(estructuralfeature);
-                }
-                else if (child.LocalName == "eTypeParameters")
-                {
-                    var etypeparameter = handleETypeParameter(child);
-                    eclass.eTypeParameters.add(etypeparameter);
-                }
-                else if (child.LocalName == "eOperations")
-                {
-                    var eoperation = handleEOperation(child);
-                    eclass.eOperations.add(eoperation);
-                }
-                else if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    eclass.eAnnotations.add(eannotation);
-
-                }
-            }
-
-            return eclass;
-        }
-
-
-
-        public string caseEClass(EClass eclass)
-        {
-            return $"<eClassifiers xsi:type=\"ecore:EClass\" name=\"{eclass.name}\" abstract=\"{eclass.abstract_}\" interface=\"{eclass.interface_}\"/>";
-        }
 
         protected IList<EObject> resolveEList(string specification)
         {
@@ -248,178 +369,67 @@ namespace Ecore.Xmi
             return result;
         }
 
-        protected EObject resolveEObject(string specification)
+
+        private EObject resolveRecurr(Queue<String> path, EObject current)
         {
 
-
-            if (specification==null)
+            if (path.Count == 0)
             {
-                return null;
+                return current;
             }
-            else if (specification.StartsWith("ecore:EDataType"))
+
+            String segment = path.Dequeue();
+
+            foreach (EObject content in current.eContents())
             {
-                if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EBigDecimal"))
+                if (content is ENamedElement)
                 {
-                    return EcorePackageImpl.Literals.EBIGDECIMAL;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EBigInteger"))
-                {
-                    return EcorePackageImpl.Literals.EBIGINTEGER;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EBoolean"))
-                {
-                    return EcorePackageImpl.Literals.EBOOLEAN;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"))
-                {
-                    return EcorePackageImpl.Literals.EBOOLEANOBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EByte"))
-                {
-                    return EcorePackageImpl.Literals.EBYTE;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EByteArray"))
-                {
-                    return EcorePackageImpl.Literals.EBYTEARRAY;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EByteObject"))
-                {
-                    return EcorePackageImpl.Literals.EBYTEOBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EChar"))
-                {
-                    return EcorePackageImpl.Literals.ECHAR;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//ECharacterObject"))
-                {
-                    return EcorePackageImpl.Literals.ECHARACTEROBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EDate"))
-                {
-                    return EcorePackageImpl.Literals.EDATE;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"))
-                {
-                    return EcorePackageImpl.Literals.EDIAGNOSTICCHAIN;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EDouble"))
-                {
-                    return EcorePackageImpl.Literals.EDOUBLE;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"))
-                {
-                    return EcorePackageImpl.Literals.EDOUBLEOBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EEList"))
-                {
-                    return EcorePackageImpl.Literals.EELIST;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EEnumerator"))
-                {
-                    return EcorePackageImpl.Literals.EENUMERATOR;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EFeatureMap"))
-                {
-                    return EcorePackageImpl.Literals.EFEATUREMAP;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EFeatureMapEntry"))
-                {
-                    return EcorePackageImpl.Literals.EFEATUREMAPENTRY;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EFloat"))
-                {
-                    return EcorePackageImpl.Literals.EFLOAT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EFloatObject"))
-                {
-                    return EcorePackageImpl.Literals.EFLOATOBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EInt"))
-                {
-                    return EcorePackageImpl.Literals.EINT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"))
-                {
-                    return EcorePackageImpl.Literals.EINTEGEROBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EJavaClass"))
-                {
-                    return EcorePackageImpl.Literals.EJAVACLASS;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"))
-                {
-                    return EcorePackageImpl.Literals.EJAVAOBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//ELong"))
-                {
-                    return EcorePackageImpl.Literals.ELONG;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EMap"))
-                {
-                    return EcorePackageImpl.Literals.EMAP;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EResource"))
-                {
-                    return EcorePackageImpl.Literals.ERESOURCE;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"))
-                {
-                    return EcorePackageImpl.Literals.ERESOURCESET;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EShort"))
-                {
-                    return EcorePackageImpl.Literals.ESHORT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EShortObject"))
-                {
-                    return EcorePackageImpl.Literals.ESHORTOBJECT;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EString"))
-                {
-                    return EcorePackageImpl.Literals.ESTRING;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//EStringToStringMapEntry"))
-                {
-                    return EcorePackageImpl.Literals.ESTRINGTOSTRINGMAPENTRY;
-                }
-                else if (specification.EndsWith("http://www.eclipse.org/emf/2002/Ecore#//ETreeIterator"))
-                {
-                    return EcorePackageImpl.Literals.ETREEITERATOR;
-                }
 
-            }
-            else if (specification.StartsWith("#//"))
-            {
-                var name = specification.Replace("#//","");
-
-                var segments = name.Split('/');
-                var stack = new Stack<string>();
-                var parent = epackage as EObject;
-
-
-
-
-                foreach (string segment in segments)
-                {
-                    var contents = parent.eContents();
-                    
-                    parent = contents.Where(e => (e as ENamedElement).name == segment).First();
-                    
+                    if ((content as ENamedElement).name == segment)
+                    {
+                        return resolveRecurr(path, content);
+                    }
                 }
-                                
-                return parent;
-            }
-            else
-            {
-                Debug.WriteLine("Error "+specification);
             }
 
             return null;
         }
 
+        protected EObject resolveEObject(string specification)
+        {
+
+
+            if (specification == null)
+            {
+                return null;
+            }
+            else if (specification.StartsWith("#//"))
+            {
+                var name = specification.Replace("#//", "");
+
+                var segments = name.Split('/');
+
+
+                var stack = new Queue<String>(name.Split('/'));
+
+                return resolveRecurr(stack, root);
+
+
+            }
+            else
+            {
+                Debug.WriteLine("Error " + specification);
+            }
+
+            return null;
+        }
+
+
+
+
         protected bool getBoolean(string innertext, bool default_)
         {
-            if (innertext!=null)
+            if (innertext != null)
             {
                 return innertext == "true" ? true : false;
             }
@@ -446,246 +456,10 @@ namespace Ecore.Xmi
                 }
 
                 return default_;
-                
+
             }
 
             return default_;
-        }
-
-
-
-        public EAttribute handleEAttribute(XmlNode node)
-        {
-            var eattribute = EcoreFactoryImpl.eINSTANCE.createEAttribute();
-            eattribute.name = node.Attributes["name"]?.InnerText;
-            eattribute.lowerBound = getInteger(node.Attributes["lowerBound"]?.InnerText, eattribute.lowerBound);
-            eattribute.upperBound = getInteger(node.Attributes["upperBound"]?.InnerText, eattribute.upperBound);
-            eattribute.unique = getBoolean(node.Attributes["unique"]?.InnerText, eattribute.unique);
-            eattribute.changeable = getBoolean(node.Attributes["changeable"]?.InnerText, eattribute.changeable);
-            eattribute.volatile_ = getBoolean(node.Attributes["volatile"]?.InnerText, eattribute.volatile_);
-            eattribute.transient = getBoolean(node.Attributes["transient"]?.InnerText, eattribute.transient);
-            eattribute.derived = getBoolean(node.Attributes["derived"]?.InnerText, eattribute.derived);
-            eattribute.defaultValueLiteral = node.Attributes["defaultValueLiteral"]?.InnerText;
-            
-            eattribute.iD = getBoolean(node.Attributes["iD"]?.InnerText, eattribute.iD);
-            eattribute.ordered = getBoolean(node.Attributes["ordered"]?.InnerText, eattribute.ordered);
-            eattribute.unsettable = getBoolean(node.Attributes["unsettable"]?.InnerText, eattribute.unsettable);
-
-            register(eattribute, EcorePackageImpl.Literals.ETYPEDELEMENT_ETYPE, node.Attributes["eType"]?.InnerText);
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    eattribute.eAnnotations.add(eannotation);
-
-                }
-                else if (child.LocalName == "eGenericType")
-                {
-                    var egenerictype = handleEGenericType(child);
-                    eattribute.eGenericType = egenerictype;
-
-                }
-            }
-            
-            return eattribute;
-        }
-
-
-
-
-        public string caseEAttribute(EAttribute eattribute)
-        {
-            var nsURI = eattribute.eType.ePackage.nsURI;
-            var uri = nsURI + "#//" + eattribute.eType.name;//TODO there is so much that can go wrong
-
-            return $"<eStructuralFeatures xsi:type=\"ecore:EAttribute\" name=\"{eattribute.name}\" eType=\"ecore:EDataType {uri}\"/>";
-        }
-
-        public EReference handleEReference(XmlNode node)
-        {
-            var ereference = EcoreFactoryImpl.eINSTANCE.createEReference();
-            ereference.name = node.Attributes["name"]?.InnerText;
-            ereference.lowerBound = getInteger(node.Attributes["lowerBound"]?.InnerText, ereference.lowerBound);
-            ereference.upperBound = getInteger(node.Attributes["upperBound"]?.InnerText, ereference.upperBound);
-            ereference.unique = getBoolean(node.Attributes["unique"]?.InnerText, ereference.unique);
-            ereference.changeable = getBoolean(node.Attributes["changeable"]?.InnerText, ereference.changeable);
-            ereference.volatile_ = getBoolean(node.Attributes["volatile"]?.InnerText, ereference.volatile_);
-            ereference.transient = getBoolean(node.Attributes["transient"]?.InnerText, ereference.transient);
-            ereference.derived = getBoolean(node.Attributes["derived"]?.InnerText, ereference.derived);
-            ereference.ordered = getBoolean(node.Attributes["ordered"]?.InnerText, ereference.ordered);
-            ereference.unsettable = getBoolean(node.Attributes["unsettable"]?.InnerText, ereference.unsettable);
-            ereference.containment = getBoolean(node.Attributes["containment"]?.InnerText, ereference.containment);
-
-            register(ereference, EcorePackageImpl.Literals.ETYPEDELEMENT_ETYPE, node.Attributes["eType"]?.InnerText);
-            ereference.resolveProxies = getBoolean(node.Attributes["resolveProxies"]?.InnerText, ereference.resolveProxies);
-            
-            register(ereference, EcorePackageImpl.Literals.EREFERENCE_EOPPOSITE, node.Attributes["eOpposite"]?.InnerText);
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    ereference.eAnnotations.add(eannotation);
-
-                }
-                else if (child.LocalName == "eGenericType")
-                {
-                    var egenerictype = handleEGenericType(child);
-                    ereference.eGenericType = egenerictype;
-
-                }
-            }
-
-            return ereference;
-
-        }
-
-        
-        public EOperation handleEOperation(XmlNode node)
-        {
-            var eoperation = EcoreFactoryImpl.eINSTANCE.createEOperation();
-            eoperation.name = node.Attributes["name"]?.InnerText;
-            
-            register(eoperation, EcorePackageImpl.Literals.ETYPEDELEMENT_ETYPE, node.Attributes["eType"]?.InnerText);
-            eoperation.ordered = getBoolean(node.Attributes["ordered"]?.InnerText, eoperation.ordered);
-            eoperation.unique = getBoolean(node.Attributes["unique"]?.InnerText, eoperation.unique);
-            eoperation.lowerBound = getInteger(node.Attributes["lowerBound"]?.InnerText, eoperation.lowerBound);
-            eoperation.upperBound = getInteger(node.Attributes["upperBound"]?.InnerText, eoperation.upperBound);
-            
-
-            register(eoperation, EcorePackageImpl.Literals.EOPERATION_EEXCEPTIONS, node.Attributes["eExceptions"]?.InnerText);
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-
-                if (child.LocalName== "eTypeParameters")
-                {
-                    var etypeparameter = handleETypeParameter(child);
-                    eoperation.eTypeParameters.add(etypeparameter);
-                }
-                else if (child.LocalName== "eParameters")
-                {
-                    var eparameter = handleEParameter(child);
-                    eoperation.eParameters.add(eparameter);
-                }
-                else if (child.LocalName == "eGenericType")
-                {
-                    var egenerictype = handleEGenericType(child);
-                    eoperation.eGenericType = egenerictype;
-                }
-                else if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    eoperation.eAnnotations.add(eannotation);
-
-                }
-            }
-
-            return eoperation;
-        }
-
-        public EParameter handleEParameter(XmlNode node)
-        {
-            //<eParameters name="feature" eType="#//EStructuralFeature"/>
-            var eparameter = EcoreFactoryImpl.eINSTANCE.createEParameter();
-            eparameter.name = node.Attributes["name"]?.InnerText;
-            
-            register(eparameter, EcorePackageImpl.Literals.ETYPEDELEMENT_ETYPE, node.Attributes["eType"]?.InnerText);
-
-            return eparameter;
-        }
-
-        public EEnum handleEEnum(XmlNode node)
-        {
-            //var eenum = epackage.eClassifiers.select(e => e.name == node.Attributes["name"].InnerText).first() as EEnum;
-
-            var eenum = EcoreFactoryImpl.eINSTANCE.createEEnum();
-            eenum.name = node.Attributes["name"]?.InnerText;
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName == "eLiterals")
-                {
-                    var eenumliteral = handleEEnumLiteral(child);
-                    eenum.eLiterals.add(eenumliteral);
-                }
-                else if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    eenum.eAnnotations.add(eannotation);
-
-                }
-
-            }
-
-            return eenum;
-        }
-
-        public EEnumLiteral handleEEnumLiteral(XmlNode node)
-        {
-            var eenumliteral = EcoreFactoryImpl.eINSTANCE.createEEnumLiteral();
-            eenumliteral.name = node.Attributes["name"]?.InnerText;
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    eenumliteral.eAnnotations.add(eannotation);
-
-                }
-
-            }
-
-            return eenumliteral;
-        }
-
-        public ETypeParameter handleETypeParameter(XmlNode node)
-        {
-            var etypeparameter = EcoreFactoryImpl.eINSTANCE.createETypeParameter();
-            etypeparameter.name = node.Attributes["name"]?.InnerText;
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName== "eBounds")
-                {
-                    var egenerictype = handleEGenericType(child);
-                    etypeparameter.eBounds.add(egenerictype);
-                }
-                else if (child.LocalName == "eAnnotations")
-                {
-                    var eannotation = handleEAnnotation(child);
-                    etypeparameter.eAnnotations.add(eannotation);
-
-                }
-
-
-            }
-
-            return etypeparameter;
-        }
-
-        public EGenericType handleEGenericType(XmlNode node)
-        {
-            var egenerictype = EcoreFactoryImpl.eINSTANCE.createEGenericType();        
-
-            register(egenerictype, EcorePackageImpl.Literals.EGENERICTYPE_ECLASSIFIER, node.Attributes["eClassifier"]?.InnerText);
-            //TODO egenerictype.eTypeParameter = getEType(node.Attributes["eTypeParameter"]?.InnerText); 
-
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                if (child.LocalName == "eTypeArguments")
-                {
-                    var etypeargument = handleEGenericType(child);
-                    egenerictype.eTypeArguments.add(etypeargument);
-                }
-
-            }
-
-            return egenerictype;
         }
 
 

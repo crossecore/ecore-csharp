@@ -4,13 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EAnnotationBase 
 	:EModelElementImpl, EAnnotation
@@ -22,6 +21,31 @@ namespace Ecore{
 			return _source;
 		}
 		set { _source = value; }
+		}
+		private OrderedSet<EObject> _contents;
+		
+		public virtual OrderedSet<EObject> contents
+		{
+			get {
+				if(_contents==null){
+					_contents = new OrderedSet<EObject>(this, EcorePackageImpl.EANNOTATION_CONTENTS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EANNOTATION_CONTENTS);
+				}
+				return _contents;
+			}
+		
+		}
+		private EMap<string, string> _details;
+		
+		public virtual EMap<string, string> details
+		{
+			get {
+				if (_details == null)
+				{
+					_details = new EcoreEMap<string, string>(EcorePackageImpl.Literals.ESTRINGTOSTRINGMAPENTRY, typeof(EStringToStringMapEntry), this, -1);
+				}
+				return _details;
+			}
+		
 		}
 		public virtual EModelElement eModelElement
 		{
@@ -61,36 +85,6 @@ namespace Ecore{
 			}
 		
 		}
-		private OrderedSet<EStringToStringMapEntry> _details;
-		
-		public virtual OrderedSet<EStringToStringMapEntry> details
-		{
-			get {
-				if(_details==null){
-					_details = new OrderedSet<EStringToStringMapEntry>(this, EcorePackageImpl.EANNOTATION_DETAILS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EANNOTATION_DETAILS);
-				}
-				return _details;
-			}
-		
-		}
-		private OrderedSet<EObject> _contents;
-		
-		public virtual OrderedSet<EObject> contents
-		{
-			get {
-				if(_contents==null){
-					_contents = new OrderedSet<EObject>(this, EcorePackageImpl.EANNOTATION_CONTENTS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EANNOTATION_CONTENTS);
-				}
-				return _contents;
-			}
-		
-		}
-	
-		/*
-		public static Set<EAnnotation> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EANNOTATION;
@@ -127,7 +121,8 @@ namespace Ecore{
 				case EcorePackageImpl.EANNOTATION_SOURCE:
 					return source;
 				case EcorePackageImpl.EANNOTATION_DETAILS:
-					return details;
+					if (coreType) return details;
+					else return details.map();							
 				case EcorePackageImpl.EANNOTATION_EMODELELEMENT:
 					return eModelElement;
 				case EcorePackageImpl.EANNOTATION_CONTENTS:
@@ -149,8 +144,7 @@ namespace Ecore{
 					source = (string) newValue;
 					return;
 				case EcorePackageImpl.EANNOTATION_DETAILS:
-					details.Clear();
-					details.AddRange(((List<EObject>)newValue)?.Cast<EStringToStringMapEntry>());
+					((EcoreEMap<string, string>)details).set(newValue);
 					return;
 				case EcorePackageImpl.EANNOTATION_EMODELELEMENT:
 					eModelElement = (EModelElement) newValue;
@@ -166,6 +160,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

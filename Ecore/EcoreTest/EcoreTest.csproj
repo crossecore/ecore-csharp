@@ -157,6 +157,7 @@
     <Compile Include="Testmodel\TestmodelSwitch.cs" />
     <Compile Include="TestOCL.cs" />
     <Compile Include="OrderedSetTest.cs" />
+    <Compile Include="XmiTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ecore\Ecore.csproj">

@@ -75,6 +75,8 @@ namespace Ecore
 
         }
 
+ 
+
         public override OrderedSet<EReference> eAllContainments
         {
             get
@@ -83,6 +85,28 @@ namespace Ecore
                 return eAllReferences.select(i => i.containment);
             }
 
+        }
+
+        public override OrderedSet<EStructuralFeature> eAllStructuralFeatures
+        {
+            get
+            {
+                return eAllSuperTypes.collect<EStructuralFeature>(e => e.eStructuralFeatures);
+            }
+
+        }
+
+        public override EStructuralFeature getEStructuralFeature(string featureName)
+        {
+            foreach (EStructuralFeature feature in eAllStructuralFeatures)
+            {
+                if (feature.name == featureName)
+                {
+                    return feature;
+                }
+            }
+
+            return null;
         }
 
 

@@ -4,16 +4,24 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EPackageBase 
 	:ENamedElementImpl, EPackage
 	{
+		private string _nsURI = "";
+		public virtual string nsURI
+		{
+		get { 
+			return _nsURI;
+		}
+		set { _nsURI = value; }
+		}
 		private string _nsPrefix = "";
 		public virtual string nsPrefix
 		{
@@ -22,13 +30,25 @@ namespace Ecore{
 		}
 		set { _nsPrefix = value; }
 		}
-		private string _nsURI = "";
-		public virtual string nsURI
+		public virtual EPackage eSuperPackage
 		{
-		get { 
-			return _nsURI;
+			get {
+			
+				if (eContainerFeatureID() != EcorePackageImpl.EPACKAGE_ESUPERPACKAGE) return default(EPackage);
+				return (EPackage)eInternalContainer();
+			}
 		}
-		set { _nsURI = value; }
+		private OrderedSet<EClassifier> _eClassifiers;
+		
+		public virtual OrderedSet<EClassifier> eClassifiers
+		{
+			get {
+				if(_eClassifiers==null){
+					_eClassifiers = new OrderedSet<EClassifier>(this, EcorePackageImpl.EPACKAGE_ECLASSIFIERS, EcorePackageImpl.ECLASSIFIER_EPACKAGE);
+				}
+				return _eClassifiers;
+			}
+		
 		}
 		private EFactory _eFactoryInstance;
 		public virtual EFactory eFactoryInstance
@@ -56,26 +76,6 @@ namespace Ecore{
 				}
 				}
 		}
-		public virtual EPackage eSuperPackage
-		{
-			get {
-			
-				if (eContainerFeatureID() != EcorePackageImpl.EPACKAGE_ESUPERPACKAGE) return default(EPackage);
-				return (EPackage)eInternalContainer();
-			}
-		}
-		private OrderedSet<EClassifier> _eClassifiers;
-		
-		public virtual OrderedSet<EClassifier> eClassifiers
-		{
-			get {
-				if(_eClassifiers==null){
-					_eClassifiers = new OrderedSet<EClassifier>(this, EcorePackageImpl.EPACKAGE_ECLASSIFIERS, EcorePackageImpl.ECLASSIFIER_EPACKAGE);
-				}
-				return _eClassifiers;
-			}
-		
-		}
 		private OrderedSet<EPackage> _eSubpackages;
 		
 		public virtual OrderedSet<EPackage> eSubpackages
@@ -93,12 +93,6 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EPackage> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EPACKAGE;
@@ -106,11 +100,6 @@ namespace Ecore{
 		
 		public override NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 			switch (featureID) {
-				case EcorePackageImpl.EPACKAGE_EFACTORYINSTANCE:
-					if (_eFactoryInstance != null){
-						msgs = ((InternalEObject)_eFactoryInstance).eInverseRemove(this, EcorePackageImpl.EPACKAGE_EFACTORYINSTANCE, typeof(EFactory), msgs);
-					}
-					return basicSetEFactoryInstance((EFactory)otherEnd, msgs);
 				case EcorePackageImpl.EPACKAGE_ESUPERPACKAGE:
 					if (eInternalContainer() != null) {
 						msgs = eBasicRemoveFromContainer(msgs);
@@ -118,6 +107,11 @@ namespace Ecore{
 					return basicSetESuperPackage((EPackage)otherEnd, msgs);
 				case EcorePackageImpl.EPACKAGE_ECLASSIFIERS:
 					return eClassifiers.basicAdd((EClassifier)otherEnd, msgs);
+				case EcorePackageImpl.EPACKAGE_EFACTORYINSTANCE:
+					if (_eFactoryInstance != null){
+						msgs = ((InternalEObject)_eFactoryInstance).eInverseRemove(this, EcorePackageImpl.EPACKAGE_EFACTORYINSTANCE, typeof(EFactory), msgs);
+					}
+					return basicSetEFactoryInstance((EFactory)otherEnd, msgs);
 				case EcorePackageImpl.EPACKAGE_ESUBPACKAGES:
 					return eSubpackages.basicAdd((EPackage)otherEnd, msgs);
 			}
@@ -126,18 +120,22 @@ namespace Ecore{
 		
 		public override NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 			switch (featureID) {
-				case EcorePackageImpl.EPACKAGE_EFACTORYINSTANCE:
-					return basicSetEFactoryInstance(null, msgs);
 				case EcorePackageImpl.EPACKAGE_ESUPERPACKAGE:
 					return basicSetESuperPackage(null, msgs);
 				case EcorePackageImpl.EPACKAGE_ECLASSIFIERS:
 					return eClassifiers.basicRemove((EClassifier)otherEnd, msgs);
+				case EcorePackageImpl.EPACKAGE_EFACTORYINSTANCE:
+					return basicSetEFactoryInstance(null, msgs);
 				case EcorePackageImpl.EPACKAGE_ESUBPACKAGES:
 					return eSubpackages.basicRemove((EPackage)otherEnd, msgs);
 			}
 			return base.eInverseRemove(otherEnd, featureID, msgs);
 		}
 		
+		public NotificationChain basicSetESuperPackage(EPackage newobj, NotificationChain msgs) {
+				msgs = eBasicSetContainer((InternalEObject)newobj, EcorePackageImpl.EPACKAGE_ESUPERPACKAGE, msgs);
+				return msgs;
+		}
 		public NotificationChain basicSetEFactoryInstance(EFactory newobj, NotificationChain msgs) {
 			var oldobj = _eFactoryInstance;
 			_eFactoryInstance = newobj;
@@ -151,10 +149,6 @@ namespace Ecore{
 				}
 			}
 			return msgs;
-		}
-		public NotificationChain basicSetESuperPackage(EPackage newobj, NotificationChain msgs) {
-				msgs = eBasicSetContainer((InternalEObject)newobj, EcorePackageImpl.EPACKAGE_ESUPERPACKAGE, msgs);
-				return msgs;
 		}
 		
 		public override Object eGet(int featureID, bool resolve, bool coreType) {
@@ -209,6 +203,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

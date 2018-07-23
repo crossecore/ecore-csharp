@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EEnumBase 
 	:EDataTypeImpl, EEnum
@@ -26,6 +26,11 @@ namespace Ecore{
 			}
 		
 		}
+		public virtual EEnumLiteral getEEnumLiteral(int value
+		)
+		{
+		    throw new NotImplementedException();
+		}
 		public virtual EEnumLiteral getEEnumLiteral(string name
 		)
 		{
@@ -36,17 +41,6 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-		public virtual EEnumLiteral getEEnumLiteral(int value
-		)
-		{
-		    throw new NotImplementedException();
-		}
-	
-		/*
-		public static Set<EEnum> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EENUM;
@@ -125,6 +119,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	
 	public interface EPackage 
@@ -25,7 +25,6 @@ namespace Ecore{
 			get;
 		set;
 		}
-		
 		EFactory eFactoryInstance
 		{
 			get;
@@ -41,7 +40,6 @@ namespace Ecore{
 			get;
 		
 		}
-		
 		EPackage eSuperPackage
 		{
 			get;

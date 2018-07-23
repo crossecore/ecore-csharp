@@ -4,13 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EDataTypeBase 
 	:EClassifierImpl, EDataType
@@ -23,12 +22,6 @@ namespace Ecore{
 		}
 		set { _serializable = value; }
 		}
-	
-		/*
-		public static Set<EDataType> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EDATATYPE;
@@ -86,6 +79,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

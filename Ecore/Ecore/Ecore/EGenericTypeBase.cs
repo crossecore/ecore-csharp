@@ -4,57 +4,16 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EGenericTypeBase 
 	:BasicEObjectImpl, EGenericType
 	{
-		private EGenericType _eUpperBound;
-		public virtual EGenericType eUpperBound
-		{
-			get {
-			
-				return _eUpperBound;
-			}
-			set {
-				if (value != _eUpperBound) {
-					NotificationChain msgs = null;
-					if (_eUpperBound != null){
-						msgs = ((InternalEObject)_eUpperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EGENERICTYPE_EUPPERBOUND, null, msgs);
-					}
-					if (value != null){
-						msgs = ((InternalEObject)value).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EGENERICTYPE_EUPPERBOUND, null, msgs);
-					}
-					msgs = basicSetEUpperBound(value, msgs);
-					if (msgs != null) {
-						msgs.dispatch();
-					}
-				}
-				else if (eNotificationRequired()){
-					eNotify(new ENotificationImpl(this, NotificationImpl.SET,EcorePackageImpl.EGENERICTYPE_EUPPERBOUND , value, value));
-				}
-				}
-		}
-		private EClassifier _eClassifier;
-		public virtual EClassifier eClassifier
-		{
-			get {
-			
-				return _eClassifier;
-			}
-			set {
-				var oldvalue = _eClassifier;
-				_eClassifier = value;
-				if (eNotificationRequired()){
-					eNotify(new ENotificationImpl(this, NotificationImpl.SET,EcorePackageImpl.EGENERICTYPE_ECLASSIFIER , oldvalue, value));
-				}
-				}
-		}
 		private EGenericType _eLowerBound;
 		public virtual EGenericType eLowerBound
 		{
@@ -96,6 +55,47 @@ namespace Ecore{
 				}
 				}
 		}
+		private EGenericType _eUpperBound;
+		public virtual EGenericType eUpperBound
+		{
+			get {
+			
+				return _eUpperBound;
+			}
+			set {
+				if (value != _eUpperBound) {
+					NotificationChain msgs = null;
+					if (_eUpperBound != null){
+						msgs = ((InternalEObject)_eUpperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EGENERICTYPE_EUPPERBOUND, null, msgs);
+					}
+					if (value != null){
+						msgs = ((InternalEObject)value).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EGENERICTYPE_EUPPERBOUND, null, msgs);
+					}
+					msgs = basicSetEUpperBound(value, msgs);
+					if (msgs != null) {
+						msgs.dispatch();
+					}
+				}
+				else if (eNotificationRequired()){
+					eNotify(new ENotificationImpl(this, NotificationImpl.SET,EcorePackageImpl.EGENERICTYPE_EUPPERBOUND , value, value));
+				}
+				}
+		}
+		private EClassifier _eClassifier;
+		public virtual EClassifier eClassifier
+		{
+			get {
+			
+				return _eClassifier;
+			}
+			set {
+				var oldvalue = _eClassifier;
+				_eClassifier = value;
+				if (eNotificationRequired()){
+					eNotify(new ENotificationImpl(this, NotificationImpl.SET,EcorePackageImpl.EGENERICTYPE_ECLASSIFIER , oldvalue, value));
+				}
+				}
+		}
 		private OrderedSet<EGenericType> _eTypeArguments;
 		
 		public virtual OrderedSet<EGenericType> eTypeArguments
@@ -121,46 +121,12 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EGenericType> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EGENERICTYPE;
 		}
 		
 		
-		public NotificationChain basicSetEUpperBound(EGenericType newobj, NotificationChain msgs) {
-			var oldobj = _eUpperBound;
-			_eUpperBound = newobj;
-			if (eNotificationRequired()) {
-				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.EGENERICTYPE_EUPPERBOUND, oldobj, newobj);
-				if (msgs == null){
-					msgs = notification;
-				}
-				else{
-					msgs.add(notification);
-				}
-			}
-			return msgs;
-		}
-		public NotificationChain basicSetEClassifier(EClassifier newobj, NotificationChain msgs) {
-			var oldobj = _eClassifier;
-			_eClassifier = newobj;
-			if (eNotificationRequired()) {
-				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.EGENERICTYPE_ECLASSIFIER, oldobj, newobj);
-				if (msgs == null){
-					msgs = notification;
-				}
-				else{
-					msgs.add(notification);
-				}
-			}
-			return msgs;
-		}
 		public NotificationChain basicSetELowerBound(EGenericType newobj, NotificationChain msgs) {
 			var oldobj = _eLowerBound;
 			_eLowerBound = newobj;
@@ -180,6 +146,34 @@ namespace Ecore{
 			_eTypeParameter = newobj;
 			if (eNotificationRequired()) {
 				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.EGENERICTYPE_ETYPEPARAMETER, oldobj, newobj);
+				if (msgs == null){
+					msgs = notification;
+				}
+				else{
+					msgs.add(notification);
+				}
+			}
+			return msgs;
+		}
+		public NotificationChain basicSetEUpperBound(EGenericType newobj, NotificationChain msgs) {
+			var oldobj = _eUpperBound;
+			_eUpperBound = newobj;
+			if (eNotificationRequired()) {
+				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.EGENERICTYPE_EUPPERBOUND, oldobj, newobj);
+				if (msgs == null){
+					msgs = notification;
+				}
+				else{
+					msgs.add(notification);
+				}
+			}
+			return msgs;
+		}
+		public NotificationChain basicSetEClassifier(EClassifier newobj, NotificationChain msgs) {
+			var oldobj = _eClassifier;
+			_eClassifier = newobj;
+			if (eNotificationRequired()) {
+				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.EGENERICTYPE_ECLASSIFIER, oldobj, newobj);
 				if (msgs == null){
 					msgs = notification;
 				}
@@ -230,6 +224,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

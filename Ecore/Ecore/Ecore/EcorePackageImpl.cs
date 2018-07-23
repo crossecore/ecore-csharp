@@ -4,9 +4,8 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
-namespace Ecore
-{
+ 
+namespace Ecore{
 	public class EcorePackageImpl : EPackageImpl, EcorePackage{
 			public const string eNAME = "ecore";
 			
@@ -23,10 +22,13 @@ namespace Ecore
 			
             public static EcorePackage init()
             {
+                // Obtain or create and register package
                 var theEcorePackage = new EcorePackageImpl();
 
+                // Create package meta-data objects
                 theEcorePackage.createPackageContents();
 
+                // Initialize created meta-data
                 theEcorePackage.initializePackageContents();
 
 		        return theEcorePackage;
@@ -139,6 +141,42 @@ namespace Ecore
 				ETypeParameterEClass = createEClass(ETYPEPARAMETER);
 				createEReference(ETypeParameterEClass, ETYPEPARAMETER_EBOUNDS);
 				
+				
+				EBigDecimalEDataType = createEDataType(EBIGDECIMAL);
+				EBigIntegerEDataType = createEDataType(EBIGINTEGER);
+				EBooleanEDataType = createEDataType(EBOOLEAN);
+				EBooleanObjectEDataType = createEDataType(EBOOLEANOBJECT);
+				EByteEDataType = createEDataType(EBYTE);
+				EByteArrayEDataType = createEDataType(EBYTEARRAY);
+				EByteObjectEDataType = createEDataType(EBYTEOBJECT);
+				ECharEDataType = createEDataType(ECHAR);
+				ECharacterObjectEDataType = createEDataType(ECHARACTEROBJECT);
+				EDateEDataType = createEDataType(EDATE);
+				EDiagnosticChainEDataType = createEDataType(EDIAGNOSTICCHAIN);
+				EDoubleEDataType = createEDataType(EDOUBLE);
+				EDoubleObjectEDataType = createEDataType(EDOUBLEOBJECT);
+				EEListEDataType = createEDataType(EELIST);
+				EEnumeratorEDataType = createEDataType(EENUMERATOR);
+				EFeatureMapEDataType = createEDataType(EFEATUREMAP);
+				EFeatureMapEntryEDataType = createEDataType(EFEATUREMAPENTRY);
+				EFloatEDataType = createEDataType(EFLOAT);
+				EFloatObjectEDataType = createEDataType(EFLOATOBJECT);
+				EIntEDataType = createEDataType(EINT);
+				EIntegerObjectEDataType = createEDataType(EINTEGEROBJECT);
+				EJavaClassEDataType = createEDataType(EJAVACLASS);
+				EJavaObjectEDataType = createEDataType(EJAVAOBJECT);
+				ELongEDataType = createEDataType(ELONG);
+				ELongObjectEDataType = createEDataType(ELONGOBJECT);
+				EMapEDataType = createEDataType(EMAP);
+				EResourceEDataType = createEDataType(ERESOURCE);
+				EResourceSetEDataType = createEDataType(ERESOURCESET);
+				EShortEDataType = createEDataType(ESHORT);
+				EShortObjectEDataType = createEDataType(ESHORTOBJECT);
+				EStringEDataType = createEDataType(ESTRING);
+				ETreeIteratorEDataType = createEDataType(ETREEITERATOR);
+				EInvocationTargetExceptionEDataType = createEDataType(EINVOCATIONTARGETEXCEPTION);
+				
+				EStringEDataType = createEDataType(ESTRING);
 	        }
 	        
 	        private bool isInitialized = false;
@@ -240,7 +278,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EAnnotationEClass, typeof(EAnnotation), "EAnnotation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEAnnotation_Source(), 
@@ -331,7 +368,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EClassEClass, typeof(EClass), "EClass", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEClass_Abstract(), 
@@ -617,7 +653,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EClassifierEClass, typeof(EClassifier), "EClassifier", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEClassifier_InstanceClassName(), 
@@ -717,7 +752,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EDataTypeEClass, typeof(EDataType), "EDataType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEDataType_Serializable(), 
@@ -735,7 +769,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				
 				initEClass(EEnumEClass, typeof(EEnum), "EEnum", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
@@ -758,7 +791,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EEnumLiteralEClass, typeof(EEnumLiteral), "EEnumLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEEnumLiteral_Value(), 
@@ -825,7 +857,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EFactoryEClass, typeof(EFactory), "EFactory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				
@@ -847,7 +878,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EModelElementEClass, typeof(EModelElement), "EModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				
@@ -869,7 +899,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(ENamedElementEClass, typeof(ENamedElement), "ENamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getENamedElement_Name(), 
@@ -888,9 +917,7 @@ namespace Ecore
 					!IS_DERIVED, 
 					IS_ORDERED);
 				
-				
 				initEClass(EObjectEClass, typeof(EObject), "EObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
-				
 				
 				
 				initEClass(EOperationEClass, typeof(EOperation), "EOperation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
@@ -986,7 +1013,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EPackageEClass, typeof(EPackage), "EPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEPackage_NsURI(), 
@@ -1092,7 +1118,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EParameterEClass, typeof(EParameter), "EParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				
@@ -1114,7 +1139,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EReferenceEClass, typeof(EReference), "EReference", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEReference_Containment(), 
@@ -1217,7 +1241,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EStructuralFeatureEClass, typeof(EStructuralFeature), "EStructuralFeature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEStructuralFeature_Changeable(), 
@@ -1344,7 +1367,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(ETypedElementEClass, typeof(ETypedElement), "ETypedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getETypedElement_Ordered(), 
@@ -1474,7 +1496,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(EStringToStringMapEntryEClass, typeof(EStringToStringMapEntry), "EStringToStringMapEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				initEAttribute(getEStringToStringMapEntry_Key(), 
@@ -1507,7 +1528,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				
 				initEClass(EGenericTypeEClass, typeof(EGenericType), "EGenericType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
@@ -1620,7 +1640,6 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
 				initEClass(ETypeParameterEClass, typeof(ETypeParameter), "ETypeParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);						
 				
 				
@@ -1642,7 +1661,39 @@ namespace Ecore
 					IS_UNIQUE, 
 					!IS_DERIVED, 
 					IS_ORDERED);
-				
+				initEDataType(EBigDecimalEDataType,null, "EBigDecimal", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EBigIntegerEDataType, null, "EBigInteger", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EBooleanEDataType, typeof(bool), "EBoolean", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EBooleanObjectEDataType, typeof(System.Boolean), "EBooleanObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EByteEDataType, typeof(byte), "EByte", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EByteArrayEDataType, typeof(byte[]), "EByteArray", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EByteObjectEDataType, typeof(System.Byte), "EByteObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(ECharEDataType, typeof(char), "EChar", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(ECharacterObjectEDataType, typeof(System.Char), "ECharacterObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EDateEDataType, typeof(System.DateTime), "EDate", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EDiagnosticChainEDataType, null, "EDiagnosticChain", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EDoubleEDataType, typeof(double), "EDouble", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EDoubleObjectEDataType, typeof(System.Double), "EDoubleObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EEListEDataType, null, "EEList", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EEnumeratorEDataType, typeof(EEnumerator), "EEnumerator", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EFeatureMapEDataType, null, "EFeatureMap", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EFeatureMapEntryEDataType, null, "EFeatureMapEntry", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EFloatEDataType, typeof(float), "EFloat", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EFloatObjectEDataType, typeof(System.Single), "EFloatObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EIntEDataType, typeof(int), "EInt", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EIntegerObjectEDataType, typeof(System.Int32), "EIntegerObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EJavaClassEDataType, typeof(System.Type), "EJavaClass", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EJavaObjectEDataType, typeof(object), "EJavaObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(ELongEDataType, typeof(long), "ELong", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(ELongObjectEDataType, typeof(System.Int64), "ELongObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EMapEDataType, null, "EMap", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EResourceEDataType, typeof(Resource), "EResource", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EResourceSetEDataType, null, "EResourceSet", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EShortEDataType, typeof(short), "EShort", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EShortObjectEDataType, typeof(System.Single), "EShortObject", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EStringEDataType, typeof(string), "EString", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(ETreeIteratorEDataType, null, "ETreeIterator", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+				initEDataType(EInvocationTargetExceptionEDataType, null, "EInvocationTargetException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 	        }
 	        
 			
@@ -1704,52 +1755,11 @@ namespace Ecore
 			private EDataType EInvocationTargetExceptionEDataType = null;
 			
 			
-			public const int EOBJECT = 10;
-			public const int EOBJECT_FEATURE_COUNT = 0;
-			public const int EOBJECT_OPERATION_COUNT = 15;
-			
-			
 			public const int EMODELELEMENT = 8;
 			public const int EMODELELEMENT_FEATURE_COUNT = 1;
 			public const int EMODELELEMENT_OPERATION_COUNT = 1;
 			
 			public const int EMODELELEMENT_EANNOTATIONS = 0;
-			
-			public const int ESTRINGTOSTRINGMAPENTRY = 48;
-			public const int ESTRINGTOSTRINGMAPENTRY_FEATURE_COUNT = 2;
-			public const int ESTRINGTOSTRINGMAPENTRY_OPERATION_COUNT = 0;
-			
-			public const int ESTRINGTOSTRINGMAPENTRY_KEY = 0;
-			public const int ESTRINGTOSTRINGMAPENTRY_VALUE = 1;
-			
-			public const int EGENERICTYPE = 50;
-			public const int EGENERICTYPE_FEATURE_COUNT = 6;
-			public const int EGENERICTYPE_OPERATION_COUNT = 1;
-			
-			public const int EGENERICTYPE_EUPPERBOUND = 0;
-			public const int EGENERICTYPE_ETYPEARGUMENTS = 1;
-			public const int EGENERICTYPE_ERAWTYPE = 2;
-			public const int EGENERICTYPE_ELOWERBOUND = 3;
-			public const int EGENERICTYPE_ETYPEPARAMETER = 4;
-			public const int EGENERICTYPE_ECLASSIFIER = 5;
-			
-			public const int EANNOTATION = 1;
-			public const int EANNOTATION_FEATURE_COUNT = EMODELELEMENT_FEATURE_COUNT + 5;
-			public const int EANNOTATION_OPERATION_COUNT = EMODELELEMENT_OPERATION_COUNT + 0;
-			
-			public const int EANNOTATION_EANNOTATIONS = 0;
-			public const int EANNOTATION_SOURCE = 1;
-			public const int EANNOTATION_DETAILS = 2;
-			public const int EANNOTATION_EMODELELEMENT = 3;
-			public const int EANNOTATION_CONTENTS = 4;
-			public const int EANNOTATION_REFERENCES = 5;
-			
-			public const int EFACTORY = 7;
-			public const int EFACTORY_FEATURE_COUNT = EMODELELEMENT_FEATURE_COUNT + 1;
-			public const int EFACTORY_OPERATION_COUNT = EMODELELEMENT_OPERATION_COUNT + 3;
-			
-			public const int EFACTORY_EANNOTATIONS = 0;
-			public const int EFACTORY_EPACKAGE = 1;
 			
 			public const int ENAMEDELEMENT = 9;
 			public const int ENAMEDELEMENT_FEATURE_COUNT = EMODELELEMENT_FEATURE_COUNT + 1;
@@ -1757,43 +1767,6 @@ namespace Ecore
 			
 			public const int ENAMEDELEMENT_EANNOTATIONS = 0;
 			public const int ENAMEDELEMENT_NAME = 1;
-			
-			public const int ECLASSIFIER = 3;
-			public const int ECLASSIFIER_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 6;
-			public const int ECLASSIFIER_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 2;
-			
-			public const int ECLASSIFIER_EANNOTATIONS = 0;
-			public const int ECLASSIFIER_NAME = 1;
-			public const int ECLASSIFIER_INSTANCECLASSNAME = 2;
-			public const int ECLASSIFIER_INSTANCECLASS = 3;
-			public const int ECLASSIFIER_DEFAULTVALUE = 4;
-			public const int ECLASSIFIER_INSTANCETYPENAME = 5;
-			public const int ECLASSIFIER_EPACKAGE = 6;
-			public const int ECLASSIFIER_ETYPEPARAMETERS = 7;
-			
-			public const int EENUMLITERAL = 6;
-			public const int EENUMLITERAL_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 4;
-			public const int EENUMLITERAL_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 0;
-			
-			public const int EENUMLITERAL_EANNOTATIONS = 0;
-			public const int EENUMLITERAL_NAME = 1;
-			public const int EENUMLITERAL_VALUE = 2;
-			public const int EENUMLITERAL_INSTANCE = 3;
-			public const int EENUMLITERAL_LITERAL = 4;
-			public const int EENUMLITERAL_EENUM = 5;
-			
-			public const int EPACKAGE = 12;
-			public const int EPACKAGE_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 6;
-			public const int EPACKAGE_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 1;
-			
-			public const int EPACKAGE_EANNOTATIONS = 0;
-			public const int EPACKAGE_NAME = 1;
-			public const int EPACKAGE_NSURI = 2;
-			public const int EPACKAGE_NSPREFIX = 3;
-			public const int EPACKAGE_EFACTORYINSTANCE = 4;
-			public const int EPACKAGE_ECLASSIFIERS = 5;
-			public const int EPACKAGE_ESUBPACKAGES = 6;
-			public const int EPACKAGE_ESUPERPACKAGE = 7;
 			
 			public const int ETYPEDELEMENT = 16;
 			public const int ETYPEDELEMENT_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 8;
@@ -1810,13 +1783,77 @@ namespace Ecore
 			public const int ETYPEDELEMENT_ETYPE = 8;
 			public const int ETYPEDELEMENT_EGENERICTYPE = 9;
 			
-			public const int ETYPEPARAMETER = 51;
-			public const int ETYPEPARAMETER_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 1;
-			public const int ETYPEPARAMETER_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 0;
+			public const int ESTRUCTURALFEATURE = 15;
+			public const int ESTRUCTURALFEATURE_FEATURE_COUNT = ETYPEDELEMENT_FEATURE_COUNT + 8;
+			public const int ESTRUCTURALFEATURE_OPERATION_COUNT = ETYPEDELEMENT_OPERATION_COUNT + 2;
 			
-			public const int ETYPEPARAMETER_EANNOTATIONS = 0;
-			public const int ETYPEPARAMETER_NAME = 1;
-			public const int ETYPEPARAMETER_EBOUNDS = 2;
+			public const int ESTRUCTURALFEATURE_EANNOTATIONS = 0;
+			public const int ESTRUCTURALFEATURE_NAME = 1;
+			public const int ESTRUCTURALFEATURE_ORDERED = 2;
+			public const int ESTRUCTURALFEATURE_UNIQUE = 3;
+			public const int ESTRUCTURALFEATURE_LOWERBOUND = 4;
+			public const int ESTRUCTURALFEATURE_UPPERBOUND = 5;
+			public const int ESTRUCTURALFEATURE_MANY = 6;
+			public const int ESTRUCTURALFEATURE_REQUIRED = 7;
+			public const int ESTRUCTURALFEATURE_ETYPE = 8;
+			public const int ESTRUCTURALFEATURE_EGENERICTYPE = 9;
+			public const int ESTRUCTURALFEATURE_CHANGEABLE = 10;
+			public const int ESTRUCTURALFEATURE_VOLATILE = 11;
+			public const int ESTRUCTURALFEATURE_TRANSIENT = 12;
+			public const int ESTRUCTURALFEATURE_DEFAULTVALUELITERAL = 13;
+			public const int ESTRUCTURALFEATURE_DEFAULTVALUE = 14;
+			public const int ESTRUCTURALFEATURE_UNSETTABLE = 15;
+			public const int ESTRUCTURALFEATURE_DERIVED = 16;
+			public const int ESTRUCTURALFEATURE_ECONTAININGCLASS = 17;
+			
+			public const int EATTRIBUTE = 0;
+			public const int EATTRIBUTE_FEATURE_COUNT = ESTRUCTURALFEATURE_FEATURE_COUNT + 2;
+			public const int EATTRIBUTE_OPERATION_COUNT = ESTRUCTURALFEATURE_OPERATION_COUNT + 0;
+			
+			public const int EATTRIBUTE_EANNOTATIONS = 0;
+			public const int EATTRIBUTE_NAME = 1;
+			public const int EATTRIBUTE_ORDERED = 2;
+			public const int EATTRIBUTE_UNIQUE = 3;
+			public const int EATTRIBUTE_LOWERBOUND = 4;
+			public const int EATTRIBUTE_UPPERBOUND = 5;
+			public const int EATTRIBUTE_MANY = 6;
+			public const int EATTRIBUTE_REQUIRED = 7;
+			public const int EATTRIBUTE_ETYPE = 8;
+			public const int EATTRIBUTE_EGENERICTYPE = 9;
+			public const int EATTRIBUTE_CHANGEABLE = 10;
+			public const int EATTRIBUTE_VOLATILE = 11;
+			public const int EATTRIBUTE_TRANSIENT = 12;
+			public const int EATTRIBUTE_DEFAULTVALUELITERAL = 13;
+			public const int EATTRIBUTE_DEFAULTVALUE = 14;
+			public const int EATTRIBUTE_UNSETTABLE = 15;
+			public const int EATTRIBUTE_DERIVED = 16;
+			public const int EATTRIBUTE_ECONTAININGCLASS = 17;
+			public const int EATTRIBUTE_ID = 18;
+			public const int EATTRIBUTE_EATTRIBUTETYPE = 19;
+			
+			public const int EANNOTATION = 1;
+			public const int EANNOTATION_FEATURE_COUNT = EMODELELEMENT_FEATURE_COUNT + 5;
+			public const int EANNOTATION_OPERATION_COUNT = EMODELELEMENT_OPERATION_COUNT + 0;
+			
+			public const int EANNOTATION_EANNOTATIONS = 0;
+			public const int EANNOTATION_SOURCE = 1;
+			public const int EANNOTATION_DETAILS = 2;
+			public const int EANNOTATION_EMODELELEMENT = 3;
+			public const int EANNOTATION_CONTENTS = 4;
+			public const int EANNOTATION_REFERENCES = 5;
+			
+			public const int ECLASSIFIER = 3;
+			public const int ECLASSIFIER_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 6;
+			public const int ECLASSIFIER_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 2;
+			
+			public const int ECLASSIFIER_EANNOTATIONS = 0;
+			public const int ECLASSIFIER_NAME = 1;
+			public const int ECLASSIFIER_INSTANCECLASSNAME = 2;
+			public const int ECLASSIFIER_INSTANCECLASS = 3;
+			public const int ECLASSIFIER_DEFAULTVALUE = 4;
+			public const int ECLASSIFIER_INSTANCETYPENAME = 5;
+			public const int ECLASSIFIER_EPACKAGE = 6;
+			public const int ECLASSIFIER_ETYPEPARAMETERS = 7;
 			
 			public const int ECLASS = 2;
 			public const int ECLASS_FEATURE_COUNT = ECLASSIFIER_FEATURE_COUNT + 16;
@@ -1861,6 +1898,44 @@ namespace Ecore
 			public const int EDATATYPE_ETYPEPARAMETERS = 7;
 			public const int EDATATYPE_SERIALIZABLE = 8;
 			
+			public const int EENUM = 5;
+			public const int EENUM_FEATURE_COUNT = EDATATYPE_FEATURE_COUNT + 1;
+			public const int EENUM_OPERATION_COUNT = EDATATYPE_OPERATION_COUNT + 3;
+			
+			public const int EENUM_EANNOTATIONS = 0;
+			public const int EENUM_NAME = 1;
+			public const int EENUM_INSTANCECLASSNAME = 2;
+			public const int EENUM_INSTANCECLASS = 3;
+			public const int EENUM_DEFAULTVALUE = 4;
+			public const int EENUM_INSTANCETYPENAME = 5;
+			public const int EENUM_EPACKAGE = 6;
+			public const int EENUM_ETYPEPARAMETERS = 7;
+			public const int EENUM_SERIALIZABLE = 8;
+			public const int EENUM_ELITERALS = 9;
+			
+			public const int EENUMLITERAL = 6;
+			public const int EENUMLITERAL_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 4;
+			public const int EENUMLITERAL_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 0;
+			
+			public const int EENUMLITERAL_EANNOTATIONS = 0;
+			public const int EENUMLITERAL_NAME = 1;
+			public const int EENUMLITERAL_VALUE = 2;
+			public const int EENUMLITERAL_INSTANCE = 3;
+			public const int EENUMLITERAL_LITERAL = 4;
+			public const int EENUMLITERAL_EENUM = 5;
+			
+			public const int EFACTORY = 7;
+			public const int EFACTORY_FEATURE_COUNT = EMODELELEMENT_FEATURE_COUNT + 1;
+			public const int EFACTORY_OPERATION_COUNT = EMODELELEMENT_OPERATION_COUNT + 3;
+			
+			public const int EFACTORY_EANNOTATIONS = 0;
+			public const int EFACTORY_EPACKAGE = 1;
+			
+			public const int EOBJECT = 10;
+			public const int EOBJECT_FEATURE_COUNT = 0;
+			public const int EOBJECT_OPERATION_COUNT = 15;
+			
+			
 			public const int EOPERATION = 11;
 			public const int EOPERATION_FEATURE_COUNT = ETYPEDELEMENT_FEATURE_COUNT + 5;
 			public const int EOPERATION_OPERATION_COUNT = ETYPEDELEMENT_OPERATION_COUNT + 2;
@@ -1881,6 +1956,19 @@ namespace Ecore
 			public const int EOPERATION_EEXCEPTIONS = 13;
 			public const int EOPERATION_EGENERICEXCEPTIONS = 14;
 			
+			public const int EPACKAGE = 12;
+			public const int EPACKAGE_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 6;
+			public const int EPACKAGE_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 1;
+			
+			public const int EPACKAGE_EANNOTATIONS = 0;
+			public const int EPACKAGE_NAME = 1;
+			public const int EPACKAGE_NSURI = 2;
+			public const int EPACKAGE_NSPREFIX = 3;
+			public const int EPACKAGE_EFACTORYINSTANCE = 4;
+			public const int EPACKAGE_ECLASSIFIERS = 5;
+			public const int EPACKAGE_ESUBPACKAGES = 6;
+			public const int EPACKAGE_ESUPERPACKAGE = 7;
+			
 			public const int EPARAMETER = 13;
 			public const int EPARAMETER_FEATURE_COUNT = ETYPEDELEMENT_FEATURE_COUNT + 1;
 			public const int EPARAMETER_OPERATION_COUNT = ETYPEDELEMENT_OPERATION_COUNT + 0;
@@ -1896,69 +1984,6 @@ namespace Ecore
 			public const int EPARAMETER_ETYPE = 8;
 			public const int EPARAMETER_EGENERICTYPE = 9;
 			public const int EPARAMETER_EOPERATION = 10;
-			
-			public const int ESTRUCTURALFEATURE = 15;
-			public const int ESTRUCTURALFEATURE_FEATURE_COUNT = ETYPEDELEMENT_FEATURE_COUNT + 8;
-			public const int ESTRUCTURALFEATURE_OPERATION_COUNT = ETYPEDELEMENT_OPERATION_COUNT + 2;
-			
-			public const int ESTRUCTURALFEATURE_EANNOTATIONS = 0;
-			public const int ESTRUCTURALFEATURE_NAME = 1;
-			public const int ESTRUCTURALFEATURE_ORDERED = 2;
-			public const int ESTRUCTURALFEATURE_UNIQUE = 3;
-			public const int ESTRUCTURALFEATURE_LOWERBOUND = 4;
-			public const int ESTRUCTURALFEATURE_UPPERBOUND = 5;
-			public const int ESTRUCTURALFEATURE_MANY = 6;
-			public const int ESTRUCTURALFEATURE_REQUIRED = 7;
-			public const int ESTRUCTURALFEATURE_ETYPE = 8;
-			public const int ESTRUCTURALFEATURE_EGENERICTYPE = 9;
-			public const int ESTRUCTURALFEATURE_CHANGEABLE = 10;
-			public const int ESTRUCTURALFEATURE_VOLATILE = 11;
-			public const int ESTRUCTURALFEATURE_TRANSIENT = 12;
-			public const int ESTRUCTURALFEATURE_DEFAULTVALUELITERAL = 13;
-			public const int ESTRUCTURALFEATURE_DEFAULTVALUE = 14;
-			public const int ESTRUCTURALFEATURE_UNSETTABLE = 15;
-			public const int ESTRUCTURALFEATURE_DERIVED = 16;
-			public const int ESTRUCTURALFEATURE_ECONTAININGCLASS = 17;
-			
-			public const int EENUM = 5;
-			public const int EENUM_FEATURE_COUNT = EDATATYPE_FEATURE_COUNT + 1;
-			public const int EENUM_OPERATION_COUNT = EDATATYPE_OPERATION_COUNT + 3;
-			
-			public const int EENUM_EANNOTATIONS = 0;
-			public const int EENUM_NAME = 1;
-			public const int EENUM_INSTANCECLASSNAME = 2;
-			public const int EENUM_INSTANCECLASS = 3;
-			public const int EENUM_DEFAULTVALUE = 4;
-			public const int EENUM_INSTANCETYPENAME = 5;
-			public const int EENUM_EPACKAGE = 6;
-			public const int EENUM_ETYPEPARAMETERS = 7;
-			public const int EENUM_SERIALIZABLE = 8;
-			public const int EENUM_ELITERALS = 9;
-			
-			public const int EATTRIBUTE = 0;
-			public const int EATTRIBUTE_FEATURE_COUNT = ESTRUCTURALFEATURE_FEATURE_COUNT + 2;
-			public const int EATTRIBUTE_OPERATION_COUNT = ESTRUCTURALFEATURE_OPERATION_COUNT + 0;
-			
-			public const int EATTRIBUTE_EANNOTATIONS = 0;
-			public const int EATTRIBUTE_NAME = 1;
-			public const int EATTRIBUTE_ORDERED = 2;
-			public const int EATTRIBUTE_UNIQUE = 3;
-			public const int EATTRIBUTE_LOWERBOUND = 4;
-			public const int EATTRIBUTE_UPPERBOUND = 5;
-			public const int EATTRIBUTE_MANY = 6;
-			public const int EATTRIBUTE_REQUIRED = 7;
-			public const int EATTRIBUTE_ETYPE = 8;
-			public const int EATTRIBUTE_EGENERICTYPE = 9;
-			public const int EATTRIBUTE_CHANGEABLE = 10;
-			public const int EATTRIBUTE_VOLATILE = 11;
-			public const int EATTRIBUTE_TRANSIENT = 12;
-			public const int EATTRIBUTE_DEFAULTVALUELITERAL = 13;
-			public const int EATTRIBUTE_DEFAULTVALUE = 14;
-			public const int EATTRIBUTE_UNSETTABLE = 15;
-			public const int EATTRIBUTE_DERIVED = 16;
-			public const int EATTRIBUTE_ECONTAININGCLASS = 17;
-			public const int EATTRIBUTE_ID = 18;
-			public const int EATTRIBUTE_EATTRIBUTETYPE = 19;
 			
 			public const int EREFERENCE = 14;
 			public const int EREFERENCE_FEATURE_COUNT = ESTRUCTURALFEATURE_FEATURE_COUNT + 6;
@@ -1988,6 +2013,32 @@ namespace Ecore
 			public const int EREFERENCE_EOPPOSITE = 21;
 			public const int EREFERENCE_EREFERENCETYPE = 22;
 			public const int EREFERENCE_EKEYS = 23;
+			
+			public const int ESTRINGTOSTRINGMAPENTRY = 48;
+			public const int ESTRINGTOSTRINGMAPENTRY_FEATURE_COUNT = 2;
+			public const int ESTRINGTOSTRINGMAPENTRY_OPERATION_COUNT = 0;
+			
+			public const int ESTRINGTOSTRINGMAPENTRY_KEY = 0;
+			public const int ESTRINGTOSTRINGMAPENTRY_VALUE = 1;
+			
+			public const int EGENERICTYPE = 50;
+			public const int EGENERICTYPE_FEATURE_COUNT = 6;
+			public const int EGENERICTYPE_OPERATION_COUNT = 1;
+			
+			public const int EGENERICTYPE_EUPPERBOUND = 0;
+			public const int EGENERICTYPE_ETYPEARGUMENTS = 1;
+			public const int EGENERICTYPE_ERAWTYPE = 2;
+			public const int EGENERICTYPE_ELOWERBOUND = 3;
+			public const int EGENERICTYPE_ETYPEPARAMETER = 4;
+			public const int EGENERICTYPE_ECLASSIFIER = 5;
+			
+			public const int ETYPEPARAMETER = 51;
+			public const int ETYPEPARAMETER_FEATURE_COUNT = ENAMEDELEMENT_FEATURE_COUNT + 1;
+			public const int ETYPEPARAMETER_OPERATION_COUNT = ENAMEDELEMENT_OPERATION_COUNT + 0;
+			
+			public const int ETYPEPARAMETER_EANNOTATIONS = 0;
+			public const int ETYPEPARAMETER_NAME = 1;
+			public const int ETYPEPARAMETER_EBOUNDS = 2;
 			
 			public const int EBIGDECIMAL = 17;
 			public const int EBIGINTEGER = 18;
@@ -2024,58 +2075,12 @@ namespace Ecore
 			public const int EINVOCATIONTARGETEXCEPTION = 52;
 			
 			
-			public EClass getEObject(){return EObjectEClass;}
-			
 			public EClass getEModelElement(){return EModelElementEClass;}
 			
 			public EReference getEModelElement_EAnnotations(){return (EReference)EModelElementEClass.eStructuralFeatures.at(0);}
-			public EClass getEStringToStringMapEntry(){return EStringToStringMapEntryEClass;}
-			
-			public EAttribute getEStringToStringMapEntry_Key(){return (EAttribute)EStringToStringMapEntryEClass.eStructuralFeatures.at(0);}
-			public EAttribute getEStringToStringMapEntry_Value(){return (EAttribute)EStringToStringMapEntryEClass.eStructuralFeatures.at(1);}
-			public EClass getEGenericType(){return EGenericTypeEClass;}
-			
-			public EReference getEGenericType_EUpperBound(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(0);}
-			public EReference getEGenericType_ETypeArguments(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(1);}
-			public EReference getEGenericType_ERawType(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(2);}
-			public EReference getEGenericType_ELowerBound(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(3);}
-			public EReference getEGenericType_ETypeParameter(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(4);}
-			public EReference getEGenericType_EClassifier(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(5);}
-			public EClass getEAnnotation(){return EAnnotationEClass;}
-			
-			public EAttribute getEAnnotation_Source(){return (EAttribute)EAnnotationEClass.eStructuralFeatures.at(0);}
-			public EReference getEAnnotation_Details(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(1);}
-			public EReference getEAnnotation_EModelElement(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(2);}
-			public EReference getEAnnotation_Contents(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(3);}
-			public EReference getEAnnotation_References(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(4);}
-			public EClass getEFactory(){return EFactoryEClass;}
-			
-			public EReference getEFactory_EPackage(){return (EReference)EFactoryEClass.eStructuralFeatures.at(0);}
 			public EClass getENamedElement(){return ENamedElementEClass;}
 			
 			public EAttribute getENamedElement_Name(){return (EAttribute)ENamedElementEClass.eStructuralFeatures.at(0);}
-			public EClass getEClassifier(){return EClassifierEClass;}
-			
-			public EAttribute getEClassifier_InstanceClassName(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(0);}
-			public EAttribute getEClassifier_InstanceClass(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(1);}
-			public EAttribute getEClassifier_DefaultValue(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(2);}
-			public EAttribute getEClassifier_InstanceTypeName(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(3);}
-			public EReference getEClassifier_EPackage(){return (EReference)EClassifierEClass.eStructuralFeatures.at(4);}
-			public EReference getEClassifier_ETypeParameters(){return (EReference)EClassifierEClass.eStructuralFeatures.at(5);}
-			public EClass getEEnumLiteral(){return EEnumLiteralEClass;}
-			
-			public EAttribute getEEnumLiteral_Value(){return (EAttribute)EEnumLiteralEClass.eStructuralFeatures.at(0);}
-			public EAttribute getEEnumLiteral_Instance(){return (EAttribute)EEnumLiteralEClass.eStructuralFeatures.at(1);}
-			public EAttribute getEEnumLiteral_Literal(){return (EAttribute)EEnumLiteralEClass.eStructuralFeatures.at(2);}
-			public EReference getEEnumLiteral_EEnum(){return (EReference)EEnumLiteralEClass.eStructuralFeatures.at(3);}
-			public EClass getEPackage(){return EPackageEClass;}
-			
-			public EAttribute getEPackage_NsURI(){return (EAttribute)EPackageEClass.eStructuralFeatures.at(0);}
-			public EAttribute getEPackage_NsPrefix(){return (EAttribute)EPackageEClass.eStructuralFeatures.at(1);}
-			public EReference getEPackage_EFactoryInstance(){return (EReference)EPackageEClass.eStructuralFeatures.at(2);}
-			public EReference getEPackage_EClassifiers(){return (EReference)EPackageEClass.eStructuralFeatures.at(3);}
-			public EReference getEPackage_ESubpackages(){return (EReference)EPackageEClass.eStructuralFeatures.at(4);}
-			public EReference getEPackage_ESuperPackage(){return (EReference)EPackageEClass.eStructuralFeatures.at(5);}
 			public EClass getETypedElement(){return ETypedElementEClass;}
 			
 			public EAttribute getETypedElement_Ordered(){return (EAttribute)ETypedElementEClass.eStructuralFeatures.at(0);}
@@ -2086,9 +2091,35 @@ namespace Ecore
 			public EAttribute getETypedElement_Required(){return (EAttribute)ETypedElementEClass.eStructuralFeatures.at(5);}
 			public EReference getETypedElement_EType(){return (EReference)ETypedElementEClass.eStructuralFeatures.at(6);}
 			public EReference getETypedElement_EGenericType(){return (EReference)ETypedElementEClass.eStructuralFeatures.at(7);}
-			public EClass getETypeParameter(){return ETypeParameterEClass;}
+			public EClass getEStructuralFeature(){return EStructuralFeatureEClass;}
 			
-			public EReference getETypeParameter_EBounds(){return (EReference)ETypeParameterEClass.eStructuralFeatures.at(0);}
+			public EAttribute getEStructuralFeature_Changeable(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(0);}
+			public EAttribute getEStructuralFeature_Volatile(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(1);}
+			public EAttribute getEStructuralFeature_Transient(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(2);}
+			public EAttribute getEStructuralFeature_DefaultValueLiteral(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(3);}
+			public EAttribute getEStructuralFeature_DefaultValue(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(4);}
+			public EAttribute getEStructuralFeature_Unsettable(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(5);}
+			public EAttribute getEStructuralFeature_Derived(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(6);}
+			public EReference getEStructuralFeature_EContainingClass(){return (EReference)EStructuralFeatureEClass.eStructuralFeatures.at(7);}
+			public EClass getEAttribute(){return EAttributeEClass;}
+			
+			public EAttribute getEAttribute_ID(){return (EAttribute)EAttributeEClass.eStructuralFeatures.at(0);}
+			public EReference getEAttribute_EAttributeType(){return (EReference)EAttributeEClass.eStructuralFeatures.at(1);}
+			public EClass getEAnnotation(){return EAnnotationEClass;}
+			
+			public EAttribute getEAnnotation_Source(){return (EAttribute)EAnnotationEClass.eStructuralFeatures.at(0);}
+			public EReference getEAnnotation_Details(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(1);}
+			public EReference getEAnnotation_EModelElement(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(2);}
+			public EReference getEAnnotation_Contents(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(3);}
+			public EReference getEAnnotation_References(){return (EReference)EAnnotationEClass.eStructuralFeatures.at(4);}
+			public EClass getEClassifier(){return EClassifierEClass;}
+			
+			public EAttribute getEClassifier_InstanceClassName(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(0);}
+			public EAttribute getEClassifier_InstanceClass(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(1);}
+			public EAttribute getEClassifier_DefaultValue(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(2);}
+			public EAttribute getEClassifier_InstanceTypeName(){return (EAttribute)EClassifierEClass.eStructuralFeatures.at(3);}
+			public EReference getEClassifier_EPackage(){return (EReference)EClassifierEClass.eStructuralFeatures.at(4);}
+			public EReference getEClassifier_ETypeParameters(){return (EReference)EClassifierEClass.eStructuralFeatures.at(5);}
 			public EClass getEClass(){return EClassEClass;}
 			
 			public EAttribute getEClass_Abstract(){return (EAttribute)EClassEClass.eStructuralFeatures.at(0);}
@@ -2110,6 +2141,20 @@ namespace Ecore
 			public EClass getEDataType(){return EDataTypeEClass;}
 			
 			public EAttribute getEDataType_Serializable(){return (EAttribute)EDataTypeEClass.eStructuralFeatures.at(0);}
+			public EClass getEEnum(){return EEnumEClass;}
+			
+			public EReference getEEnum_ELiterals(){return (EReference)EEnumEClass.eStructuralFeatures.at(0);}
+			public EClass getEEnumLiteral(){return EEnumLiteralEClass;}
+			
+			public EAttribute getEEnumLiteral_Value(){return (EAttribute)EEnumLiteralEClass.eStructuralFeatures.at(0);}
+			public EAttribute getEEnumLiteral_Instance(){return (EAttribute)EEnumLiteralEClass.eStructuralFeatures.at(1);}
+			public EAttribute getEEnumLiteral_Literal(){return (EAttribute)EEnumLiteralEClass.eStructuralFeatures.at(2);}
+			public EReference getEEnumLiteral_EEnum(){return (EReference)EEnumLiteralEClass.eStructuralFeatures.at(3);}
+			public EClass getEFactory(){return EFactoryEClass;}
+			
+			public EReference getEFactory_EPackage(){return (EReference)EFactoryEClass.eStructuralFeatures.at(0);}
+			public EClass getEObject(){return EObjectEClass;}
+			
 			public EClass getEOperation(){return EOperationEClass;}
 			
 			public EReference getEOperation_EContainingClass(){return (EReference)EOperationEClass.eStructuralFeatures.at(0);}
@@ -2117,26 +2162,17 @@ namespace Ecore
 			public EReference getEOperation_EParameters(){return (EReference)EOperationEClass.eStructuralFeatures.at(2);}
 			public EReference getEOperation_EExceptions(){return (EReference)EOperationEClass.eStructuralFeatures.at(3);}
 			public EReference getEOperation_EGenericExceptions(){return (EReference)EOperationEClass.eStructuralFeatures.at(4);}
+			public EClass getEPackage(){return EPackageEClass;}
+			
+			public EAttribute getEPackage_NsURI(){return (EAttribute)EPackageEClass.eStructuralFeatures.at(0);}
+			public EAttribute getEPackage_NsPrefix(){return (EAttribute)EPackageEClass.eStructuralFeatures.at(1);}
+			public EReference getEPackage_EFactoryInstance(){return (EReference)EPackageEClass.eStructuralFeatures.at(2);}
+			public EReference getEPackage_EClassifiers(){return (EReference)EPackageEClass.eStructuralFeatures.at(3);}
+			public EReference getEPackage_ESubpackages(){return (EReference)EPackageEClass.eStructuralFeatures.at(4);}
+			public EReference getEPackage_ESuperPackage(){return (EReference)EPackageEClass.eStructuralFeatures.at(5);}
 			public EClass getEParameter(){return EParameterEClass;}
 			
 			public EReference getEParameter_EOperation(){return (EReference)EParameterEClass.eStructuralFeatures.at(0);}
-			public EClass getEStructuralFeature(){return EStructuralFeatureEClass;}
-			
-			public EAttribute getEStructuralFeature_Changeable(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(0);}
-			public EAttribute getEStructuralFeature_Volatile(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(1);}
-			public EAttribute getEStructuralFeature_Transient(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(2);}
-			public EAttribute getEStructuralFeature_DefaultValueLiteral(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(3);}
-			public EAttribute getEStructuralFeature_DefaultValue(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(4);}
-			public EAttribute getEStructuralFeature_Unsettable(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(5);}
-			public EAttribute getEStructuralFeature_Derived(){return (EAttribute)EStructuralFeatureEClass.eStructuralFeatures.at(6);}
-			public EReference getEStructuralFeature_EContainingClass(){return (EReference)EStructuralFeatureEClass.eStructuralFeatures.at(7);}
-			public EClass getEEnum(){return EEnumEClass;}
-			
-			public EReference getEEnum_ELiterals(){return (EReference)EEnumEClass.eStructuralFeatures.at(0);}
-			public EClass getEAttribute(){return EAttributeEClass;}
-			
-			public EAttribute getEAttribute_ID(){return (EAttribute)EAttributeEClass.eStructuralFeatures.at(0);}
-			public EReference getEAttribute_EAttributeType(){return (EReference)EAttributeEClass.eStructuralFeatures.at(1);}
 			public EClass getEReference(){return EReferenceEClass;}
 			
 			public EAttribute getEReference_Containment(){return (EAttribute)EReferenceEClass.eStructuralFeatures.at(0);}
@@ -2145,6 +2181,21 @@ namespace Ecore
 			public EReference getEReference_EOpposite(){return (EReference)EReferenceEClass.eStructuralFeatures.at(3);}
 			public EReference getEReference_EReferenceType(){return (EReference)EReferenceEClass.eStructuralFeatures.at(4);}
 			public EReference getEReference_EKeys(){return (EReference)EReferenceEClass.eStructuralFeatures.at(5);}
+			public EClass getEStringToStringMapEntry(){return EStringToStringMapEntryEClass;}
+			
+			public EAttribute getEStringToStringMapEntry_Key(){return (EAttribute)EStringToStringMapEntryEClass.eStructuralFeatures.at(0);}
+			public EAttribute getEStringToStringMapEntry_Value(){return (EAttribute)EStringToStringMapEntryEClass.eStructuralFeatures.at(1);}
+			public EClass getEGenericType(){return EGenericTypeEClass;}
+			
+			public EReference getEGenericType_EUpperBound(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(0);}
+			public EReference getEGenericType_ETypeArguments(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(1);}
+			public EReference getEGenericType_ERawType(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(2);}
+			public EReference getEGenericType_ELowerBound(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(3);}
+			public EReference getEGenericType_ETypeParameter(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(4);}
+			public EReference getEGenericType_EClassifier(){return (EReference)EGenericTypeEClass.eStructuralFeatures.at(5);}
+			public EClass getETypeParameter(){return ETypeParameterEClass;}
+			
+			public EReference getETypeParameter_EBounds(){return (EReference)ETypeParameterEClass.eStructuralFeatures.at(0);}
 			public EDataType getEBigDecimal(){return EBigDecimalEDataType;}
 			public EDataType getEBigInteger(){return EBigIntegerEDataType;}
 			public EDataType getEBoolean(){return EBooleanEDataType;}
@@ -2180,68 +2231,14 @@ namespace Ecore
 			public EDataType getEInvocationTargetException(){return EInvocationTargetExceptionEDataType;}
 			
 			public class Literals{
-				public static EClass EOBJECT = EcorePackageImpl.eINSTANCE.getEObject();
-				
-				
 				public static EClass EMODELELEMENT = EcorePackageImpl.eINSTANCE.getEModelElement();
 				
 				public static EReference EMODELELEMENT_EANNOTATIONS = EcorePackageImpl.eINSTANCE.getEModelElement_EAnnotations();
-				
-				public static EClass ESTRINGTOSTRINGMAPENTRY = EcorePackageImpl.eINSTANCE.getEStringToStringMapEntry();
-				
-				
-				public static EAttribute ESTRINGTOSTRINGMAPENTRY_KEY = EcorePackageImpl.eINSTANCE.getEStringToStringMapEntry_Key();
-				public static EAttribute ESTRINGTOSTRINGMAPENTRY_VALUE = EcorePackageImpl.eINSTANCE.getEStringToStringMapEntry_Value();
-				public static EClass EGENERICTYPE = EcorePackageImpl.eINSTANCE.getEGenericType();
-				
-				public static EReference EGENERICTYPE_EUPPERBOUND = EcorePackageImpl.eINSTANCE.getEGenericType_EUpperBound();
-				public static EReference EGENERICTYPE_ETYPEARGUMENTS = EcorePackageImpl.eINSTANCE.getEGenericType_ETypeArguments();
-				public static EReference EGENERICTYPE_ERAWTYPE = EcorePackageImpl.eINSTANCE.getEGenericType_ERawType();
-				public static EReference EGENERICTYPE_ELOWERBOUND = EcorePackageImpl.eINSTANCE.getEGenericType_ELowerBound();
-				public static EReference EGENERICTYPE_ETYPEPARAMETER = EcorePackageImpl.eINSTANCE.getEGenericType_ETypeParameter();
-				public static EReference EGENERICTYPE_ECLASSIFIER = EcorePackageImpl.eINSTANCE.getEGenericType_EClassifier();
-				
-				public static EClass EANNOTATION = EcorePackageImpl.eINSTANCE.getEAnnotation();
-				
-				public static EReference EANNOTATION_DETAILS = EcorePackageImpl.eINSTANCE.getEAnnotation_Details();
-				public static EReference EANNOTATION_EMODELELEMENT = EcorePackageImpl.eINSTANCE.getEAnnotation_EModelElement();
-				public static EReference EANNOTATION_CONTENTS = EcorePackageImpl.eINSTANCE.getEAnnotation_Contents();
-				public static EReference EANNOTATION_REFERENCES = EcorePackageImpl.eINSTANCE.getEAnnotation_References();
-				
-				public static EAttribute EANNOTATION_SOURCE = EcorePackageImpl.eINSTANCE.getEAnnotation_Source();
-				public static EClass EFACTORY = EcorePackageImpl.eINSTANCE.getEFactory();
-				
-				public static EReference EFACTORY_EPACKAGE = EcorePackageImpl.eINSTANCE.getEFactory_EPackage();
 				
 				public static EClass ENAMEDELEMENT = EcorePackageImpl.eINSTANCE.getENamedElement();
 				
 				
 				public static EAttribute ENAMEDELEMENT_NAME = EcorePackageImpl.eINSTANCE.getENamedElement_Name();
-				public static EClass ECLASSIFIER = EcorePackageImpl.eINSTANCE.getEClassifier();
-				
-				public static EReference ECLASSIFIER_EPACKAGE = EcorePackageImpl.eINSTANCE.getEClassifier_EPackage();
-				public static EReference ECLASSIFIER_ETYPEPARAMETERS = EcorePackageImpl.eINSTANCE.getEClassifier_ETypeParameters();
-				
-				public static EAttribute ECLASSIFIER_INSTANCECLASSNAME = EcorePackageImpl.eINSTANCE.getEClassifier_InstanceClassName();
-				public static EAttribute ECLASSIFIER_INSTANCECLASS = EcorePackageImpl.eINSTANCE.getEClassifier_InstanceClass();
-				public static EAttribute ECLASSIFIER_DEFAULTVALUE = EcorePackageImpl.eINSTANCE.getEClassifier_DefaultValue();
-				public static EAttribute ECLASSIFIER_INSTANCETYPENAME = EcorePackageImpl.eINSTANCE.getEClassifier_InstanceTypeName();
-				public static EClass EENUMLITERAL = EcorePackageImpl.eINSTANCE.getEEnumLiteral();
-				
-				public static EReference EENUMLITERAL_EENUM = EcorePackageImpl.eINSTANCE.getEEnumLiteral_EEnum();
-				
-				public static EAttribute EENUMLITERAL_VALUE = EcorePackageImpl.eINSTANCE.getEEnumLiteral_Value();
-				public static EAttribute EENUMLITERAL_INSTANCE = EcorePackageImpl.eINSTANCE.getEEnumLiteral_Instance();
-				public static EAttribute EENUMLITERAL_LITERAL = EcorePackageImpl.eINSTANCE.getEEnumLiteral_Literal();
-				public static EClass EPACKAGE = EcorePackageImpl.eINSTANCE.getEPackage();
-				
-				public static EReference EPACKAGE_EFACTORYINSTANCE = EcorePackageImpl.eINSTANCE.getEPackage_EFactoryInstance();
-				public static EReference EPACKAGE_ECLASSIFIERS = EcorePackageImpl.eINSTANCE.getEPackage_EClassifiers();
-				public static EReference EPACKAGE_ESUBPACKAGES = EcorePackageImpl.eINSTANCE.getEPackage_ESubpackages();
-				public static EReference EPACKAGE_ESUPERPACKAGE = EcorePackageImpl.eINSTANCE.getEPackage_ESuperPackage();
-				
-				public static EAttribute EPACKAGE_NSURI = EcorePackageImpl.eINSTANCE.getEPackage_NsURI();
-				public static EAttribute EPACKAGE_NSPREFIX = EcorePackageImpl.eINSTANCE.getEPackage_NsPrefix();
 				public static EClass ETYPEDELEMENT = EcorePackageImpl.eINSTANCE.getETypedElement();
 				
 				public static EReference ETYPEDELEMENT_ETYPE = EcorePackageImpl.eINSTANCE.getETypedElement_EType();
@@ -2253,10 +2250,39 @@ namespace Ecore
 				public static EAttribute ETYPEDELEMENT_UPPERBOUND = EcorePackageImpl.eINSTANCE.getETypedElement_UpperBound();
 				public static EAttribute ETYPEDELEMENT_MANY = EcorePackageImpl.eINSTANCE.getETypedElement_Many();
 				public static EAttribute ETYPEDELEMENT_REQUIRED = EcorePackageImpl.eINSTANCE.getETypedElement_Required();
-				public static EClass ETYPEPARAMETER = EcorePackageImpl.eINSTANCE.getETypeParameter();
+				public static EClass ESTRUCTURALFEATURE = EcorePackageImpl.eINSTANCE.getEStructuralFeature();
 				
-				public static EReference ETYPEPARAMETER_EBOUNDS = EcorePackageImpl.eINSTANCE.getETypeParameter_EBounds();
+				public static EReference ESTRUCTURALFEATURE_ECONTAININGCLASS = EcorePackageImpl.eINSTANCE.getEStructuralFeature_EContainingClass();
 				
+				public static EAttribute ESTRUCTURALFEATURE_CHANGEABLE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Changeable();
+				public static EAttribute ESTRUCTURALFEATURE_VOLATILE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Volatile();
+				public static EAttribute ESTRUCTURALFEATURE_TRANSIENT = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Transient();
+				public static EAttribute ESTRUCTURALFEATURE_DEFAULTVALUELITERAL = EcorePackageImpl.eINSTANCE.getEStructuralFeature_DefaultValueLiteral();
+				public static EAttribute ESTRUCTURALFEATURE_DEFAULTVALUE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_DefaultValue();
+				public static EAttribute ESTRUCTURALFEATURE_UNSETTABLE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Unsettable();
+				public static EAttribute ESTRUCTURALFEATURE_DERIVED = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Derived();
+				public static EClass EATTRIBUTE = EcorePackageImpl.eINSTANCE.getEAttribute();
+				
+				public static EReference EATTRIBUTE_EATTRIBUTETYPE = EcorePackageImpl.eINSTANCE.getEAttribute_EAttributeType();
+				
+				public static EAttribute EATTRIBUTE_ID = EcorePackageImpl.eINSTANCE.getEAttribute_ID();
+				public static EClass EANNOTATION = EcorePackageImpl.eINSTANCE.getEAnnotation();
+				
+				public static EReference EANNOTATION_DETAILS = EcorePackageImpl.eINSTANCE.getEAnnotation_Details();
+				public static EReference EANNOTATION_EMODELELEMENT = EcorePackageImpl.eINSTANCE.getEAnnotation_EModelElement();
+				public static EReference EANNOTATION_CONTENTS = EcorePackageImpl.eINSTANCE.getEAnnotation_Contents();
+				public static EReference EANNOTATION_REFERENCES = EcorePackageImpl.eINSTANCE.getEAnnotation_References();
+				
+				public static EAttribute EANNOTATION_SOURCE = EcorePackageImpl.eINSTANCE.getEAnnotation_Source();
+				public static EClass ECLASSIFIER = EcorePackageImpl.eINSTANCE.getEClassifier();
+				
+				public static EReference ECLASSIFIER_EPACKAGE = EcorePackageImpl.eINSTANCE.getEClassifier_EPackage();
+				public static EReference ECLASSIFIER_ETYPEPARAMETERS = EcorePackageImpl.eINSTANCE.getEClassifier_ETypeParameters();
+				
+				public static EAttribute ECLASSIFIER_INSTANCECLASSNAME = EcorePackageImpl.eINSTANCE.getEClassifier_InstanceClassName();
+				public static EAttribute ECLASSIFIER_INSTANCECLASS = EcorePackageImpl.eINSTANCE.getEClassifier_InstanceClass();
+				public static EAttribute ECLASSIFIER_DEFAULTVALUE = EcorePackageImpl.eINSTANCE.getEClassifier_DefaultValue();
+				public static EAttribute ECLASSIFIER_INSTANCETYPENAME = EcorePackageImpl.eINSTANCE.getEClassifier_InstanceTypeName();
 				public static EClass ECLASS = EcorePackageImpl.eINSTANCE.getEClass();
 				
 				public static EReference ECLASS_ESUPERTYPES = EcorePackageImpl.eINSTANCE.getEClass_ESuperTypes();
@@ -2280,6 +2306,24 @@ namespace Ecore
 				
 				
 				public static EAttribute EDATATYPE_SERIALIZABLE = EcorePackageImpl.eINSTANCE.getEDataType_Serializable();
+				public static EClass EENUM = EcorePackageImpl.eINSTANCE.getEEnum();
+				
+				public static EReference EENUM_ELITERALS = EcorePackageImpl.eINSTANCE.getEEnum_ELiterals();
+				
+				public static EClass EENUMLITERAL = EcorePackageImpl.eINSTANCE.getEEnumLiteral();
+				
+				public static EReference EENUMLITERAL_EENUM = EcorePackageImpl.eINSTANCE.getEEnumLiteral_EEnum();
+				
+				public static EAttribute EENUMLITERAL_VALUE = EcorePackageImpl.eINSTANCE.getEEnumLiteral_Value();
+				public static EAttribute EENUMLITERAL_INSTANCE = EcorePackageImpl.eINSTANCE.getEEnumLiteral_Instance();
+				public static EAttribute EENUMLITERAL_LITERAL = EcorePackageImpl.eINSTANCE.getEEnumLiteral_Literal();
+				public static EClass EFACTORY = EcorePackageImpl.eINSTANCE.getEFactory();
+				
+				public static EReference EFACTORY_EPACKAGE = EcorePackageImpl.eINSTANCE.getEFactory_EPackage();
+				
+				public static EClass EOBJECT = EcorePackageImpl.eINSTANCE.getEObject();
+				
+				
 				public static EClass EOPERATION = EcorePackageImpl.eINSTANCE.getEOperation();
 				
 				public static EReference EOPERATION_ECONTAININGCLASS = EcorePackageImpl.eINSTANCE.getEOperation_EContainingClass();
@@ -2288,30 +2332,19 @@ namespace Ecore
 				public static EReference EOPERATION_EEXCEPTIONS = EcorePackageImpl.eINSTANCE.getEOperation_EExceptions();
 				public static EReference EOPERATION_EGENERICEXCEPTIONS = EcorePackageImpl.eINSTANCE.getEOperation_EGenericExceptions();
 				
+				public static EClass EPACKAGE = EcorePackageImpl.eINSTANCE.getEPackage();
+				
+				public static EReference EPACKAGE_EFACTORYINSTANCE = EcorePackageImpl.eINSTANCE.getEPackage_EFactoryInstance();
+				public static EReference EPACKAGE_ECLASSIFIERS = EcorePackageImpl.eINSTANCE.getEPackage_EClassifiers();
+				public static EReference EPACKAGE_ESUBPACKAGES = EcorePackageImpl.eINSTANCE.getEPackage_ESubpackages();
+				public static EReference EPACKAGE_ESUPERPACKAGE = EcorePackageImpl.eINSTANCE.getEPackage_ESuperPackage();
+				
+				public static EAttribute EPACKAGE_NSURI = EcorePackageImpl.eINSTANCE.getEPackage_NsURI();
+				public static EAttribute EPACKAGE_NSPREFIX = EcorePackageImpl.eINSTANCE.getEPackage_NsPrefix();
 				public static EClass EPARAMETER = EcorePackageImpl.eINSTANCE.getEParameter();
 				
 				public static EReference EPARAMETER_EOPERATION = EcorePackageImpl.eINSTANCE.getEParameter_EOperation();
 				
-				public static EClass ESTRUCTURALFEATURE = EcorePackageImpl.eINSTANCE.getEStructuralFeature();
-				
-				public static EReference ESTRUCTURALFEATURE_ECONTAININGCLASS = EcorePackageImpl.eINSTANCE.getEStructuralFeature_EContainingClass();
-				
-				public static EAttribute ESTRUCTURALFEATURE_CHANGEABLE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Changeable();
-				public static EAttribute ESTRUCTURALFEATURE_VOLATILE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Volatile();
-				public static EAttribute ESTRUCTURALFEATURE_TRANSIENT = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Transient();
-				public static EAttribute ESTRUCTURALFEATURE_DEFAULTVALUELITERAL = EcorePackageImpl.eINSTANCE.getEStructuralFeature_DefaultValueLiteral();
-				public static EAttribute ESTRUCTURALFEATURE_DEFAULTVALUE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_DefaultValue();
-				public static EAttribute ESTRUCTURALFEATURE_UNSETTABLE = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Unsettable();
-				public static EAttribute ESTRUCTURALFEATURE_DERIVED = EcorePackageImpl.eINSTANCE.getEStructuralFeature_Derived();
-				public static EClass EENUM = EcorePackageImpl.eINSTANCE.getEEnum();
-				
-				public static EReference EENUM_ELITERALS = EcorePackageImpl.eINSTANCE.getEEnum_ELiterals();
-				
-				public static EClass EATTRIBUTE = EcorePackageImpl.eINSTANCE.getEAttribute();
-				
-				public static EReference EATTRIBUTE_EATTRIBUTETYPE = EcorePackageImpl.eINSTANCE.getEAttribute_EAttributeType();
-				
-				public static EAttribute EATTRIBUTE_ID = EcorePackageImpl.eINSTANCE.getEAttribute_ID();
 				public static EClass EREFERENCE = EcorePackageImpl.eINSTANCE.getEReference();
 				
 				public static EReference EREFERENCE_EOPPOSITE = EcorePackageImpl.eINSTANCE.getEReference_EOpposite();
@@ -2321,6 +2354,24 @@ namespace Ecore
 				public static EAttribute EREFERENCE_CONTAINMENT = EcorePackageImpl.eINSTANCE.getEReference_Containment();
 				public static EAttribute EREFERENCE_CONTAINER = EcorePackageImpl.eINSTANCE.getEReference_Container();
 				public static EAttribute EREFERENCE_RESOLVEPROXIES = EcorePackageImpl.eINSTANCE.getEReference_ResolveProxies();
+				public static EClass ESTRINGTOSTRINGMAPENTRY = EcorePackageImpl.eINSTANCE.getEStringToStringMapEntry();
+				
+				
+				public static EAttribute ESTRINGTOSTRINGMAPENTRY_KEY = EcorePackageImpl.eINSTANCE.getEStringToStringMapEntry_Key();
+				public static EAttribute ESTRINGTOSTRINGMAPENTRY_VALUE = EcorePackageImpl.eINSTANCE.getEStringToStringMapEntry_Value();
+				public static EClass EGENERICTYPE = EcorePackageImpl.eINSTANCE.getEGenericType();
+				
+				public static EReference EGENERICTYPE_EUPPERBOUND = EcorePackageImpl.eINSTANCE.getEGenericType_EUpperBound();
+				public static EReference EGENERICTYPE_ETYPEARGUMENTS = EcorePackageImpl.eINSTANCE.getEGenericType_ETypeArguments();
+				public static EReference EGENERICTYPE_ERAWTYPE = EcorePackageImpl.eINSTANCE.getEGenericType_ERawType();
+				public static EReference EGENERICTYPE_ELOWERBOUND = EcorePackageImpl.eINSTANCE.getEGenericType_ELowerBound();
+				public static EReference EGENERICTYPE_ETYPEPARAMETER = EcorePackageImpl.eINSTANCE.getEGenericType_ETypeParameter();
+				public static EReference EGENERICTYPE_ECLASSIFIER = EcorePackageImpl.eINSTANCE.getEGenericType_EClassifier();
+				
+				public static EClass ETYPEPARAMETER = EcorePackageImpl.eINSTANCE.getETypeParameter();
+				
+				public static EReference ETYPEPARAMETER_EBOUNDS = EcorePackageImpl.eINSTANCE.getETypeParameter_EBounds();
+				
 				public static EDataType EBIGDECIMAL = EcorePackageImpl.eINSTANCE.getEBigDecimal();
 				public static EDataType EBIGINTEGER = EcorePackageImpl.eINSTANCE.getEBigInteger();
 				public static EDataType EBOOLEAN = EcorePackageImpl.eINSTANCE.getEBoolean();

@@ -8,7 +8,13 @@
 
 namespace Ecore
 {
-    public class EEnumerator
+    public interface EEnumerator
     {
+        string getName();
+
+        int getValue();
+
+        string getLiteral();
+
     }
 }

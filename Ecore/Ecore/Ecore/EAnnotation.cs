@@ -4,13 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	
 	public interface EAnnotation 
@@ -21,12 +20,11 @@ namespace Ecore{
 			get;
 		set;
 		}
-		OrderedSet<EStringToStringMapEntry> details
+		EMap<string, string> details
 		{
 			get;
 		
 		}
-		
 		EModelElement eModelElement
 		{
 			get;

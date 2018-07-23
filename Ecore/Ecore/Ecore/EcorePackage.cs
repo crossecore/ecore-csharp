@@ -4,63 +4,16 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
-namespace Ecore
-{
+ 
+namespace Ecore{
 	public interface EcorePackage : EPackage {
 			
-		EClass getEObject();
-		
 		EClass getEModelElement();
 		EReference getEModelElement_EAnnotations();
-		
-		EClass getEStringToStringMapEntry();
-		
-		EAttribute getEStringToStringMapEntry_Key();
-		EAttribute getEStringToStringMapEntry_Value();
-		EClass getEGenericType();
-		EReference getEGenericType_EUpperBound();
-		EReference getEGenericType_ETypeArguments();
-		EReference getEGenericType_ERawType();
-		EReference getEGenericType_ELowerBound();
-		EReference getEGenericType_ETypeParameter();
-		EReference getEGenericType_EClassifier();
-		
-		EClass getEAnnotation();
-		EReference getEAnnotation_Details();
-		EReference getEAnnotation_EModelElement();
-		EReference getEAnnotation_Contents();
-		EReference getEAnnotation_References();
-		
-		EAttribute getEAnnotation_Source();
-		EClass getEFactory();
-		EReference getEFactory_EPackage();
 		
 		EClass getENamedElement();
 		
 		EAttribute getENamedElement_Name();
-		EClass getEClassifier();
-		EReference getEClassifier_EPackage();
-		EReference getEClassifier_ETypeParameters();
-		
-		EAttribute getEClassifier_InstanceClassName();
-		EAttribute getEClassifier_InstanceClass();
-		EAttribute getEClassifier_DefaultValue();
-		EAttribute getEClassifier_InstanceTypeName();
-		EClass getEEnumLiteral();
-		EReference getEEnumLiteral_EEnum();
-		
-		EAttribute getEEnumLiteral_Value();
-		EAttribute getEEnumLiteral_Instance();
-		EAttribute getEEnumLiteral_Literal();
-		EClass getEPackage();
-		EReference getEPackage_EFactoryInstance();
-		EReference getEPackage_EClassifiers();
-		EReference getEPackage_ESubpackages();
-		EReference getEPackage_ESuperPackage();
-		
-		EAttribute getEPackage_NsURI();
-		EAttribute getEPackage_NsPrefix();
 		EClass getETypedElement();
 		EReference getETypedElement_EType();
 		EReference getETypedElement_EGenericType();
@@ -71,9 +24,35 @@ namespace Ecore
 		EAttribute getETypedElement_UpperBound();
 		EAttribute getETypedElement_Many();
 		EAttribute getETypedElement_Required();
-		EClass getETypeParameter();
-		EReference getETypeParameter_EBounds();
+		EClass getEStructuralFeature();
+		EReference getEStructuralFeature_EContainingClass();
 		
+		EAttribute getEStructuralFeature_Changeable();
+		EAttribute getEStructuralFeature_Volatile();
+		EAttribute getEStructuralFeature_Transient();
+		EAttribute getEStructuralFeature_DefaultValueLiteral();
+		EAttribute getEStructuralFeature_DefaultValue();
+		EAttribute getEStructuralFeature_Unsettable();
+		EAttribute getEStructuralFeature_Derived();
+		EClass getEAttribute();
+		EReference getEAttribute_EAttributeType();
+		
+		EAttribute getEAttribute_ID();
+		EClass getEAnnotation();
+		EReference getEAnnotation_Details();
+		EReference getEAnnotation_EModelElement();
+		EReference getEAnnotation_Contents();
+		EReference getEAnnotation_References();
+		
+		EAttribute getEAnnotation_Source();
+		EClass getEClassifier();
+		EReference getEClassifier_EPackage();
+		EReference getEClassifier_ETypeParameters();
+		
+		EAttribute getEClassifier_InstanceClassName();
+		EAttribute getEClassifier_InstanceClass();
+		EAttribute getEClassifier_DefaultValue();
+		EAttribute getEClassifier_InstanceTypeName();
 		EClass getEClass();
 		EReference getEClass_ESuperTypes();
 		EReference getEClass_EOperations();
@@ -95,6 +74,20 @@ namespace Ecore
 		EClass getEDataType();
 		
 		EAttribute getEDataType_Serializable();
+		EClass getEEnum();
+		EReference getEEnum_ELiterals();
+		
+		EClass getEEnumLiteral();
+		EReference getEEnumLiteral_EEnum();
+		
+		EAttribute getEEnumLiteral_Value();
+		EAttribute getEEnumLiteral_Instance();
+		EAttribute getEEnumLiteral_Literal();
+		EClass getEFactory();
+		EReference getEFactory_EPackage();
+		
+		EClass getEObject();
+		
 		EClass getEOperation();
 		EReference getEOperation_EContainingClass();
 		EReference getEOperation_ETypeParameters();
@@ -102,26 +95,17 @@ namespace Ecore
 		EReference getEOperation_EExceptions();
 		EReference getEOperation_EGenericExceptions();
 		
+		EClass getEPackage();
+		EReference getEPackage_EFactoryInstance();
+		EReference getEPackage_EClassifiers();
+		EReference getEPackage_ESubpackages();
+		EReference getEPackage_ESuperPackage();
+		
+		EAttribute getEPackage_NsURI();
+		EAttribute getEPackage_NsPrefix();
 		EClass getEParameter();
 		EReference getEParameter_EOperation();
 		
-		EClass getEStructuralFeature();
-		EReference getEStructuralFeature_EContainingClass();
-		
-		EAttribute getEStructuralFeature_Changeable();
-		EAttribute getEStructuralFeature_Volatile();
-		EAttribute getEStructuralFeature_Transient();
-		EAttribute getEStructuralFeature_DefaultValueLiteral();
-		EAttribute getEStructuralFeature_DefaultValue();
-		EAttribute getEStructuralFeature_Unsettable();
-		EAttribute getEStructuralFeature_Derived();
-		EClass getEEnum();
-		EReference getEEnum_ELiterals();
-		
-		EClass getEAttribute();
-		EReference getEAttribute_EAttributeType();
-		
-		EAttribute getEAttribute_ID();
 		EClass getEReference();
 		EReference getEReference_EOpposite();
 		EReference getEReference_EReferenceType();
@@ -130,6 +114,21 @@ namespace Ecore
 		EAttribute getEReference_Containment();
 		EAttribute getEReference_Container();
 		EAttribute getEReference_ResolveProxies();
+		EClass getEStringToStringMapEntry();
+		
+		EAttribute getEStringToStringMapEntry_Key();
+		EAttribute getEStringToStringMapEntry_Value();
+		EClass getEGenericType();
+		EReference getEGenericType_EUpperBound();
+		EReference getEGenericType_ETypeArguments();
+		EReference getEGenericType_ERawType();
+		EReference getEGenericType_ELowerBound();
+		EReference getEGenericType_ETypeParameter();
+		EReference getEGenericType_EClassifier();
+		
+		EClass getETypeParameter();
+		EReference getETypeParameter_EBounds();
+		
 		EDataType getEBigDecimal();
 		EDataType getEBigInteger();
 		EDataType getEBoolean();

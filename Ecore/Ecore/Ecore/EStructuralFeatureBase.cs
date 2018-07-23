@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EStructuralFeatureBase 
 	:ETypedElementImpl, EStructuralFeature
@@ -22,14 +22,6 @@ namespace Ecore{
 		}
 		set { _changeable = value; }
 		}
-		private string _defaultValueLiteral = "";
-		public virtual string defaultValueLiteral
-		{
-		get { 
-			return _defaultValueLiteral;
-		}
-		set { _defaultValueLiteral = value; }
-		}
 		private bool _unsettable = false;
 		public virtual bool unsettable
 		{
@@ -38,12 +30,13 @@ namespace Ecore{
 		}
 		set { _unsettable = value; }
 		}
-		public virtual object defaultValue
+		private bool _derived = false;
+		public virtual bool derived
 		{
 		get { 
-			//TODO implement derivation
-			return default(object);
+			return _derived;
 		}
+		set { _derived = value; }
 		}
 		private bool _transient = false;
 		public virtual bool transient
@@ -61,13 +54,20 @@ namespace Ecore{
 		}
 		set { _volatile = value; }
 		}
-		private bool _derived = false;
-		public virtual bool derived
+		public virtual object defaultValue
 		{
 		get { 
-			return _derived;
+			//TODO implement derivation
+			return default(object);
 		}
-		set { _derived = value; }
+		}
+		private string _defaultValueLiteral = "";
+		public virtual string defaultValueLiteral
+		{
+		get { 
+			return _defaultValueLiteral;
+		}
+		set { _defaultValueLiteral = value; }
 		}
 		public virtual EClass eContainingClass
 		{
@@ -77,20 +77,14 @@ namespace Ecore{
 				return (EClass)eInternalContainer();
 			}
 		}
-		public virtual int getFeatureID()
-		{
-		    throw new NotImplementedException();
-		}
 		public virtual Type getContainerClass()
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EStructuralFeature> allInstances(){
-			throw new NotImplementedException();
+		public virtual int getFeatureID()
+		{
+		    throw new NotImplementedException();
 		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.ESTRUCTURALFEATURE;
@@ -211,6 +205,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

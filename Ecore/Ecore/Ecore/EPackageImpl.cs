@@ -41,6 +41,22 @@ namespace Ecore
             }
         }
 
+        public override EClassifier getEClassifier(string name)
+        {
+
+
+            foreach (EClassifier eclassifier in eClassifiers)
+            {
+
+                if (eclassifier.name==name)
+                {
+                    return eclassifier;
+                }
+            }
+
+            return null;
+        }
+
 
         protected EClass createEClass(int id)
         {

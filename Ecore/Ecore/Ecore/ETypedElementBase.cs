@@ -4,30 +4,16 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class ETypedElementBase 
 	:ENamedElementImpl, ETypedElement
 	{
-		public virtual bool required
-		{
-		get { 
-			//TODO implement derivation
-			return default(bool);
-		}
-		}
-		public virtual bool many
-		{
-		get { 
-			//TODO implement derivation
-			return default(bool);
-		}
-		}
 		private bool _unique = false;
 		public virtual bool unique
 		{
@@ -35,22 +21,6 @@ namespace Ecore{
 			return _unique;
 		}
 		set { _unique = value; }
-		}
-		private int _upperBound = 0;
-		public virtual int upperBound
-		{
-		get { 
-			return _upperBound;
-		}
-		set { _upperBound = value; }
-		}
-		private int _lowerBound = 0;
-		public virtual int lowerBound
-		{
-		get { 
-			return _lowerBound;
-		}
-		set { _lowerBound = value; }
 		}
 		private bool _ordered = false;
 		public virtual bool ordered
@@ -60,20 +30,35 @@ namespace Ecore{
 		}
 		set { _ordered = value; }
 		}
-		private EClassifier _eType;
-		public virtual EClassifier eType
+		private int _lowerBound = 0;
+		public virtual int lowerBound
 		{
-			get {
-			
-				return _eType;
-			}
-			set {
-				var oldvalue = _eType;
-				_eType = value;
-				if (eNotificationRequired()){
-					eNotify(new ENotificationImpl(this, NotificationImpl.SET,EcorePackageImpl.ETYPEDELEMENT_ETYPE , oldvalue, value));
-				}
-				}
+		get { 
+			return _lowerBound;
+		}
+		set { _lowerBound = value; }
+		}
+		private int _upperBound = 0;
+		public virtual int upperBound
+		{
+		get { 
+			return _upperBound;
+		}
+		set { _upperBound = value; }
+		}
+		public virtual bool many
+		{
+		get { 
+			//TODO implement derivation
+			return default(bool);
+		}
+		}
+		public virtual bool required
+		{
+		get { 
+			//TODO implement derivation
+			return default(bool);
+		}
 		}
 		private EGenericType _eGenericType;
 		public virtual EGenericType eGenericType
@@ -101,23 +86,32 @@ namespace Ecore{
 				}
 				}
 		}
-	
-		/*
-		public static Set<ETypedElement> allInstances(){
-			throw new NotImplementedException();
+		private EClassifier _eType;
+		public virtual EClassifier eType
+		{
+			get {
+			
+				return _eType;
+			}
+			set {
+				var oldvalue = _eType;
+				_eType = value;
+				if (eNotificationRequired()){
+					eNotify(new ENotificationImpl(this, NotificationImpl.SET,EcorePackageImpl.ETYPEDELEMENT_ETYPE , oldvalue, value));
+				}
+				}
 		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.ETYPEDELEMENT;
 		}
 		
 		
-		public NotificationChain basicSetEType(EClassifier newobj, NotificationChain msgs) {
-			var oldobj = _eType;
-			_eType = newobj;
+		public NotificationChain basicSetEGenericType(EGenericType newobj, NotificationChain msgs) {
+			var oldobj = _eGenericType;
+			_eGenericType = newobj;
 			if (eNotificationRequired()) {
-				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.ETYPEDELEMENT_ETYPE, oldobj, newobj);
+				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.ETYPEDELEMENT_EGENERICTYPE, oldobj, newobj);
 				if (msgs == null){
 					msgs = notification;
 				}
@@ -127,11 +121,11 @@ namespace Ecore{
 			}
 			return msgs;
 		}
-		public NotificationChain basicSetEGenericType(EGenericType newobj, NotificationChain msgs) {
-			var oldobj = _eGenericType;
-			_eGenericType = newobj;
+		public NotificationChain basicSetEType(EClassifier newobj, NotificationChain msgs) {
+			var oldobj = _eType;
+			_eType = newobj;
 			if (eNotificationRequired()) {
-				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.ETYPEDELEMENT_EGENERICTYPE, oldobj, newobj);
+				var notification = new ENotificationImpl(this, NotificationImpl.SET, EcorePackageImpl.ETYPEDELEMENT_ETYPE, oldobj, newobj);
 				if (msgs == null){
 					msgs = notification;
 				}
@@ -199,6 +193,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

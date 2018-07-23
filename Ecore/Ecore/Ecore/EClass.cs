@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	
 	public interface EClass 
@@ -75,7 +75,6 @@ namespace Ecore{
 			get;
 		
 		}
-		
 		EAttribute eIDAttribute
 		{
 			get;

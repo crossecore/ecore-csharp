@@ -4,40 +4,16 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EOperationBase 
 	:ETypedElementImpl, EOperation
 	{
-		private OrderedSet<ETypeParameter> _eTypeParameters;
-		
-		public virtual OrderedSet<ETypeParameter> eTypeParameters
-		{
-			get {
-				if(_eTypeParameters==null){
-					_eTypeParameters = new OrderedSet<ETypeParameter>(this, EcorePackageImpl.EOPERATION_ETYPEPARAMETERS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EOPERATION_ETYPEPARAMETERS);
-				}
-				return _eTypeParameters;
-			}
-		
-		}
-		private OrderedSet<EGenericType> _eGenericExceptions;
-		
-		public virtual OrderedSet<EGenericType> eGenericExceptions
-		{
-			get {
-				if(_eGenericExceptions==null){
-					_eGenericExceptions = new OrderedSet<EGenericType>(this, EcorePackageImpl.EOPERATION_EGENERICEXCEPTIONS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EOPERATION_EGENERICEXCEPTIONS);
-				}
-				return _eGenericExceptions;
-			}
-		
-		}
 		public virtual EClass eContainingClass
 		{
 			get {
@@ -58,6 +34,30 @@ namespace Ecore{
 			}
 		
 		}
+		private OrderedSet<EGenericType> _eGenericExceptions;
+		
+		public virtual OrderedSet<EGenericType> eGenericExceptions
+		{
+			get {
+				if(_eGenericExceptions==null){
+					_eGenericExceptions = new OrderedSet<EGenericType>(this, EcorePackageImpl.EOPERATION_EGENERICEXCEPTIONS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EOPERATION_EGENERICEXCEPTIONS);
+				}
+				return _eGenericExceptions;
+			}
+		
+		}
+		private OrderedSet<ETypeParameter> _eTypeParameters;
+		
+		public virtual OrderedSet<ETypeParameter> eTypeParameters
+		{
+			get {
+				if(_eTypeParameters==null){
+					_eTypeParameters = new OrderedSet<ETypeParameter>(this, EcorePackageImpl.EOPERATION_ETYPEPARAMETERS, EOPPOSITE_FEATURE_BASE - EcorePackageImpl.EOPERATION_ETYPEPARAMETERS);
+				}
+				return _eTypeParameters;
+			}
+		
+		}
 		private OrderedSet<EClassifier> _eExceptions;
 		
 		public virtual OrderedSet<EClassifier> eExceptions
@@ -70,21 +70,15 @@ namespace Ecore{
 			}
 		
 		}
-		public virtual int getOperationID()
-		{
-		    throw new NotImplementedException();
-		}
 		public virtual bool isOverrideOf(EOperation someOperation
 		)
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EOperation> allInstances(){
-			throw new NotImplementedException();
+		public virtual int getOperationID()
+		{
+		    throw new NotImplementedException();
 		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EOPERATION;
@@ -201,6 +195,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

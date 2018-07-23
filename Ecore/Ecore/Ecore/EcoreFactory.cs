@@ -4,9 +4,8 @@
  * 
  * contributor: Simon Schwichtenberg
  */
-
-namespace Ecore
-{
+ 
+namespace Ecore{
 	public interface EcoreFactory : EFactory{
 		
 		EAttribute createEAttribute();

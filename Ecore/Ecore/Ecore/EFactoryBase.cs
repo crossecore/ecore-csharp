@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EFactoryBase 
 	:EModelElementImpl, EFactory
@@ -46,23 +46,17 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-		public virtual EObject create(EClass eClass
-		)
-		{
-		    throw new NotImplementedException();
-		}
 		public virtual string convertToString(EDataType eDataType,
 		object instanceValue
 		)
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EFactory> allInstances(){
-			throw new NotImplementedException();
+		public virtual EObject create(EClass eClass
+		)
+		{
+		    throw new NotImplementedException();
 		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.EFACTORY;
@@ -125,6 +119,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

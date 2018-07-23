@@ -4,24 +4,16 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EStringToStringMapEntryBase 
 	:BasicEObjectImpl, EStringToStringMapEntry
 	{
-		private string _key = "";
-		public virtual string key
-		{
-		get { 
-			return _key;
-		}
-		set { _key = value; }
-		}
 		private string _value = "";
 		public virtual string value
 		{
@@ -30,12 +22,14 @@ namespace Ecore{
 		}
 		set { _value = value; }
 		}
-	
-		/*
-		public static Set<EStringToStringMapEntry> allInstances(){
-			throw new NotImplementedException();
+		private string _key = "";
+		public virtual string key
+		{
+		get { 
+			return _key;
 		}
-		*/
+		set { _key = value; }
+		}
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.ESTRINGTOSTRINGMAPENTRY;
@@ -65,6 +59,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }

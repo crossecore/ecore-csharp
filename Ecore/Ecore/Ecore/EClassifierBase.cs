@@ -4,12 +4,12 @@
  * 
  * contributor: Simon Schwichtenberg
  */
+ 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using oclstdlib;
-///<summary>This class was generated.</summary>
 namespace Ecore{
 	public class EClassifierBase 
 	:ENamedElementImpl, EClassifier
@@ -19,13 +19,6 @@ namespace Ecore{
 		get { 
 			//TODO implement derivation
 			return default(Type);
-		}
-		}
-		public virtual object defaultValue
-		{
-		get { 
-			//TODO implement derivation
-			return default(object);
 		}
 		}
 		private string _instanceClassName = "";
@@ -44,13 +37,12 @@ namespace Ecore{
 		}
 		set { _instanceTypeName = value; }
 		}
-		public virtual EPackage ePackage
+		public virtual object defaultValue
 		{
-			get {
-			
-				if (eContainerFeatureID() != EcorePackageImpl.ECLASSIFIER_EPACKAGE) return default(EPackage);
-				return (EPackage)eInternalContainer();
-			}
+		get { 
+			//TODO implement derivation
+			return default(object);
+		}
 		}
 		private OrderedSet<ETypeParameter> _eTypeParameters;
 		
@@ -64,6 +56,14 @@ namespace Ecore{
 			}
 		
 		}
+		public virtual EPackage ePackage
+		{
+			get {
+			
+				if (eContainerFeatureID() != EcorePackageImpl.ECLASSIFIER_EPACKAGE) return default(EPackage);
+				return (EPackage)eInternalContainer();
+			}
+		}
 		public virtual bool isInstance(object object_
 		)
 		{
@@ -73,12 +73,6 @@ namespace Ecore{
 		{
 		    throw new NotImplementedException();
 		}
-	
-		/*
-		public static Set<EClassifier> allInstances(){
-			throw new NotImplementedException();
-		}
-		*/
 		
 		protected override EClass eStaticClass() {
 			return EcorePackageImpl.Literals.ECLASSIFIER;
@@ -153,6 +147,7 @@ namespace Ecore{
 			}
 			base.eSet(featureID, newValue);
 		}
+		
 		
 	}
 }
