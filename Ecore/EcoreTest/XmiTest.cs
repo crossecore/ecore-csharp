@@ -24,7 +24,7 @@ namespace EcoreTest
             EcorePackageImpl.init();
 
             //TODO: https://msdn.microsoft.com/de-de/library/ms182475.aspx
-            var resource = new XmiResource2();
+            var resource = new XmiResource();
 
             
 
