@@ -65,6 +65,7 @@
     <Compile Include="Ecore\EClassifierImpl.cs" />
     <Compile Include="Ecore\EClassImpl.cs" />
     <Compile Include="Ecore\EcoreEList.cs" />
+    <Compile Include="Ecore\EcoreEMap.cs" />
     <Compile Include="Ecore\EcoreFactory.cs" />
     <Compile Include="Ecore\EcoreFactoryImpl.cs" />
     <Compile Include="Ecore\EcorePackage.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Ecore\EGenericType.cs" />
     <Compile Include="Ecore\EGenericTypeBase.cs" />
     <Compile Include="Ecore\EGenericTypeImpl.cs" />
+    <Compile Include="Ecore\EMap.cs" />
     <Compile Include="Ecore\EModelElement.cs" />
     <Compile Include="Ecore\EModelElementBase.cs" />
     <Compile Include="Ecore\EModelElementImpl.cs" />
