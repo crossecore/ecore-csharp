@@ -29,6 +29,18 @@ namespace Ecore.Xmi
         private List<Tuple<EObject, EStructuralFeature, String>> resolveJobs = new List<Tuple<EObject, EStructuralFeature, String>>();
 
 
+        public XmiResource()
+        {
+            factory = EcoreFactoryImpl.eINSTANCE;
+            epackage = EcorePackageImpl.eINSTANCE;
+        }
+
+        public XmiResource(EPackage epackage, EFactory factory)
+        {
+            this.epackage = epackage;
+            this.factory = factory;
+        }
+
         public void Save(string path)
         {
             saveRecurr(root, null);
