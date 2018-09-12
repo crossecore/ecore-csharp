@@ -36,6 +36,11 @@ namespace Ecore
             set { containerClass_ = value; }
         }
 
+        public override Type getContainerClass()
+        {
+            return containerClass_;
+        }
+
     }
 
 }
