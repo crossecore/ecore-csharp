@@ -215,24 +215,125 @@ namespace Ecore.Xmi
                         if (etype?.ePackage?.nsURI == "http://www.eclipse.org/emf/2002/Ecore")
                         {
 
-                            if (etype.name == "EBoolean")
+                            if (etype.name == "EBigDecimal")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EBigInteger")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EBoolean")
                             {
                                 eobject.eSet(estructuralfeature, value == "true" ? true : false);
+                            }
+                            else if (etype.name == "EBooleanObject")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EByteArray")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EByteObject")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EChar")
+                            {
+                                eobject.eSet(estructuralfeature, value[0]);
+                            }
+                            else if (etype.name == "ECharacterObject")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EDateEDiagnosticChain")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EDiagnosticChain")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            else if (etype.name == "EDouble")
+                            {
+                                eobject.eSet(estructuralfeature, Double.Parse(value));
+                            }
+                            else if (etype.name == "EDoubleObject")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            //EEList
+                            //EEnumerator
+                            //EFeatureMap
+                            //EFeatureMapEntry
+                            else if (etype.name == "EFloat")
+                            {
+                                eobject.eSet(estructuralfeature, Single.Parse(value));
+                            }
+                            else if (etype.name == "EFloatObject")
+                            {
+                                throw new NotImplementedException();
                             }
                             else if (etype.name == "EInt")
                             {
                                 eobject.eSet(estructuralfeature, Int32.Parse(value));
                             }
+                            else if (etype.name == "EIntegerObject")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            //EJavaClass
+                            //EJavaObject
+                            else if (etype.name == "ELong")
+                            {
+                                eobject.eSet(estructuralfeature, Int64.Parse(value));
+                            }
+                            else if (etype.name == "ELongObject")
+                            {
+                                throw new NotImplementedException();
+                            }
+                            //EMap
+                            //EResource
+                            //EResourceSet
+                            else if (etype.name == "EShort")
+                            {
+                                eobject.eSet(estructuralfeature, Int16.Parse(value));
+                            }
+                            else if (etype.name == "EShortObject")
+                            {
+                                throw new NotImplementedException();
+                            }
                             else if (etype.name == "EString")
                             {
                                 eobject.eSet(estructuralfeature, value);
+                            }
+                            //ETreeIterator
+                            //EInvocationTargetException
+
+                        }
+                        else
+                        {
+                            //custom package
+
+                            if (etype is EEnum)
+                            {
+                                //TODO set literals
+                                //var literal = VisibilityKind.getByName(value);
+
+                                //eobject.eSet(estructuralfeature, literal);
+                                
                             }
                         }
 
                     }
                     else if (estructuralfeature.many)
                     {
-
+                        var y = 3;
+                    }
+                    else
+                    {
+                        var x = 2;
                     }
                 }
                 else if (estructuralfeature is EReference)
