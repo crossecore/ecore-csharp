@@ -189,9 +189,21 @@ namespace Ecore
             return eFeature;
         }
 
-        public virtual void eSet(EStructuralFeature feature, object newValue)
+        public virtual void eSet(EStructuralFeature eFeature, object newValue)
         {
-            eSet(feature.getFeatureID(), newValue);
+            int featureID = eDerivedStructuralFeatureID(eFeature);
+            /*
+            if (featureID >= 0)
+            {
+            */
+                eSet(featureID, newValue);
+
+            /*}
+            else
+            {
+                eOpenSet(eFeature, newValue);
+            }
+            */
         }
 
         public virtual bool eIsSet(EStructuralFeature feature)
@@ -209,7 +221,7 @@ namespace Ecore
             throw new NotImplementedException();
         }
 
-        public int eDerivedStructuralFeatureID(int baseFeatureID, Type baseClass)
+        public virtual int eDerivedStructuralFeatureID(int baseFeatureID, Type baseClass)
         {
             return baseFeatureID;
         }
@@ -217,7 +229,7 @@ namespace Ecore
         public int eDerivedStructuralFeatureID(EStructuralFeature eStructuralFeature)
         {
 
-            Type containerClass = null;
+            Type containerClass = eStructuralFeature.getContainerClass();
             /*
             Class <?> containerClass = eStructuralFeature.getContainerClass();
             if (containerClass == null)
@@ -321,7 +333,7 @@ namespace Ecore
             throw new NotImplementedException();
         }
 
-        public int eBaseStructuralFeatureID(int derivedFeatureID, Type baseClass)
+        public virtual int eBaseStructuralFeatureID(int derivedFeatureID, Type baseClass)
         {
             throw new NotImplementedException();
         }
