@@ -546,7 +546,7 @@ namespace oclstdlib
 
             foreach (T element in this)
             {
-                set.add(element);
+                set.Add(element);
             }
             return set;
         }
@@ -556,7 +556,7 @@ namespace oclstdlib
 
             foreach (T element in this)
             {
-                set.add(element);
+                set.Add(element);
             }
             return set;
         }
@@ -566,7 +566,7 @@ namespace oclstdlib
 
             foreach (T element in this)
             {
-                set.add(element);
+                set.Add(element);
             }
             return set;
         }
@@ -576,7 +576,7 @@ namespace oclstdlib
 
             foreach (T element in this)
             {
-                set.add(element);
+                set.Add(element);
             }
             return set;
         }

@@ -99,14 +99,14 @@ namespace oclstdlib
                     var subcollection = (OrderedSet<T2>)element;
                     foreach (T2 e in subcollection.flatten<T2>().asSet())
                     {
-                        result.add(e);
+                        result.Add(e);
                     }
 
                 }
                 else if (element is T2)
                 {
                     var e = (T2)element;
-                    result.add(e);
+                    result.Add(e);
 
                 }
             }
@@ -128,7 +128,7 @@ namespace oclstdlib
 
                 foreach (T2 ee in e)
                 {
-                    result.add(ee);
+                    result.Add(ee);
                 }
 
             }
@@ -147,7 +147,7 @@ namespace oclstdlib
                 var item = lambda(element);
                 if (item!=null)
                 {
-                    result.add(item);
+                    result.Add(item);
                 }
                 
                 
@@ -201,12 +201,12 @@ namespace oclstdlib
 
             foreach (T element in this)
             {
-                union.add(element);
+                union.Add(element);
             }
 
             foreach (T element in other)
             {
-                union.add(element);
+                union.Add(element);
             }
 
 
@@ -250,7 +250,7 @@ namespace oclstdlib
         public OrderedSet<T> including(T element)
         {
             var copy = new OrderedSet<T>(this);
-            copy.add(element);
+            copy.Add(element);
             return copy;
         }
 
@@ -270,7 +270,7 @@ namespace oclstdlib
             {
                 if (!collection.Contains(item))
                 {
-                    result.add(item);
+                    result.Add(item);
                 }
             }
 
@@ -288,7 +288,7 @@ namespace oclstdlib
 
             foreach (T item in collection)
             {
-                result.add(item);
+                result.Add(item);
             }
 
             return result;
@@ -305,7 +305,7 @@ namespace oclstdlib
             foreach (T item in collection)
             {
 
-                result.add(item);
+                result.Add(item);
 
             }
 
@@ -325,7 +325,7 @@ namespace oclstdlib
             foreach (T item in this)
             {
 
-                result.add(item);
+                result.Add(item);
 
             }
 
@@ -341,7 +341,7 @@ namespace oclstdlib
             foreach (T element in filter)
             {
 
-                result.add(element);
+                result.Add(element);
 
             }
             return result;
@@ -359,7 +359,7 @@ namespace oclstdlib
 
                 if (!remove.Contains(element))
                 {
-                    result.add(element);
+                    result.Add(element);
                 }
 
             }
@@ -378,7 +378,7 @@ namespace oclstdlib
                 copy.remove(item);
             }
                         
-            copy.add(item);
+            copy.Add(item);
             return copy;
 
         }
@@ -386,10 +386,10 @@ namespace oclstdlib
         public virtual OrderedSet<T> prepend(T item)
         {
             var result = new OrderedSet<T>();
-            result.add(item);
+            result.Add(item);
             foreach (T i in this)
             {
-                result.add(i);
+                result.Add(i);
             }
 
             return result;
@@ -422,7 +422,7 @@ namespace oclstdlib
             {
                 if (other.Contains(item))
                 {
-                    result.add(item);
+                    result.Add(item);
                 }
             }
             return result;

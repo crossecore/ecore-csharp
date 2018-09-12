@@ -118,7 +118,7 @@ namespace oclstdlib
 
                 foreach (T2 ee in e)
                 {
-                    result.add(ee);
+                    result.Add(ee);
                 }
 
             }
@@ -134,7 +134,7 @@ namespace oclstdlib
             foreach (T element in this)
             {
 
-                result.add(lambda(element));
+                result.Add(lambda(element));
 
             }
 
@@ -146,7 +146,7 @@ namespace oclstdlib
         public Set<T> including(T element)
         {
             var copy = new Set<T>(this);
-            copy.add(element);
+            copy.Add(element);
             return copy;
         }
 
@@ -170,7 +170,7 @@ namespace oclstdlib
 
             foreach (T item in collection)
             {
-                result.add(item);
+                result.Add(item);
             }
 
             return result;
@@ -190,7 +190,7 @@ namespace oclstdlib
             {
                 if (!collection.Contains(item))
                 {
-                    result.add(item);
+                    result.Add(item);
                 }
             }
 
@@ -232,14 +232,14 @@ namespace oclstdlib
                     var subcollection = (Set<T2>)element;
                     foreach (T2 e in subcollection.flatten<T2>().asSet())
                     {
-                        result.add(e);
+                        result.Add(e);
                     }
 
                 }
                 else if (element is T2)
                 {
                     var e = (T2)element;
-                    result.add(e);
+                    result.Add(e);
 
                 }
             }
@@ -256,7 +256,7 @@ namespace oclstdlib
             foreach (T element in filter)
             {
 
-                result.add(element);
+                result.Add(element);
 
             }
             return result;
@@ -274,7 +274,7 @@ namespace oclstdlib
 
                 if (!remove.Contains(element))
                 {
-                    result.add(element);
+                    result.Add(element);
                 }
 
             }
