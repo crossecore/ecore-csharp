@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ecore.Xmi;
 using Ecore;
 using System.Diagnostics;
+using Serialization;
 
 
 namespace EcoreTest
@@ -18,7 +19,7 @@ namespace EcoreTest
     {
 
 
-        [TestMethod]
+        //[TestMethod]
         public void Load()
         {
             EcorePackageImpl.init();
@@ -40,6 +41,24 @@ namespace EcoreTest
             resource.Save("");
 
             Assert.IsNotNull(epackage);
+
+        }
+
+
+        [TestMethod]
+        public void Load2()
+        {
+
+            var resource = new XmiResource(SerializationPackageImpl.eINSTANCE, SerializationFactoryImpl.eINSTANCE);
+            var root = resource.Load("C:/Users/Simon/Data/git2/crossecore/model/Serialization.xmi") as MyClass;
+
+            Assert.IsNotNull(root);
+
+            Assert.IsNotNull(root.selection);
+
+            Assert.IsNotNull(root.selection2);
+
+
 
         }
     }

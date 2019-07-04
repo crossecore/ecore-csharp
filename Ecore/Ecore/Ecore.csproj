@@ -2,6 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Simon Schwichtenberg</Authors>
+    <Company>CrossEcore</Company>
+    <PackageId>CrossEcore</PackageId>
+    <Product>CrossEcore</Product>
+    <RepositoryUrl>https://github.com/crossecore/ecore-csharp</RepositoryUrl>
+    <Description>Ecore and OCL runtime API for C#</Description>
+    <PackageProjectUrl>http://www.crossecore.org</PackageProjectUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0-alpha</Version>
+    <PackageLicenseExpression>EPL-2.0</PackageLicenseExpression>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>

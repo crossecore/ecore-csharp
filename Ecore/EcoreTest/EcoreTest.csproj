@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Ecore\Ecore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Serialization\" />
+  </ItemGroup>
+
 </Project>

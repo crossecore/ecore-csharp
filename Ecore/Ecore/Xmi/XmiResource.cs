@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -25,6 +26,8 @@ namespace Ecore.Xmi
         private EPackage epackage = EcorePackageImpl.eINSTANCE;//TODO make dynamic registry
 
         private EObject root;
+
+        private Dictionary<object, EObject> registry = new Dictionary<object, EObject>();
 
         private List<Tuple<EObject, EStructuralFeature, String>> resolveJobs = new List<Tuple<EObject, EStructuralFeature, String>>();
 
@@ -167,7 +170,7 @@ namespace Ecore.Xmi
 
             lateResolve();
 
-            return epackage;
+            return root;
         }
 
 
@@ -204,6 +207,14 @@ namespace Ecore.Xmi
             {
                 var name = attribute.Name;
                 var estructuralfeature = eobject.eClass().getEStructuralFeature(name);
+
+
+                if (estructuralfeature is EAttribute && (estructuralfeature as EAttribute).iD)
+                {
+                    var id = attribute.InnerText;
+                    registry[id] = eobject;
+                }
+
 
                 if (estructuralfeature is EAttribute)
                 {
@@ -312,18 +323,12 @@ namespace Ecore.Xmi
                             //EInvocationTargetException
 
                         }
-                        else
+                        else if(etype is EDataType)
                         {
-                            //custom package
+                            
 
-                            if (etype is EEnum)
-                            {
-                                //TODO set literals
-                                //var literal = VisibilityKind.getByName(value);
-
-                                //eobject.eSet(estructuralfeature, literal);
-                                
-                            }
+                            var literalvalue = this.factory.createFromString(etype as EDataType, value);
+                            eobject.eSet(estructuralfeature, literalvalue);
                         }
 
                     }
@@ -338,8 +343,10 @@ namespace Ecore.Xmi
                 }
                 else if (estructuralfeature is EReference)
                 {
-                    resolveJobs.Add(new Tuple<EObject, EStructuralFeature, String>(eobject, estructuralfeature, attribute.InnerText));
+                    
+                    this.resolve(eobject, estructuralfeature, attribute.InnerText);
 
+                  
                 }
 
             }
@@ -401,8 +408,10 @@ namespace Ecore.Xmi
                                 {
                                     addEStructuralFeatures(eobject2, child);
 
-                                    var list = new List<EObject>();
+                                    var list = (eobject.eGet(containment_er) as IEnumerable<EObject>).ToList();
+
                                     list.Add(eobject2);
+
                                     eobject.eSet(containment_er, list);
                                 }
                                 else
@@ -430,6 +439,14 @@ namespace Ecore.Xmi
 
             }
         }
+
+
+        private void resolve(EObject eobject, EStructuralFeature estructuralfeature, String value)
+        {
+
+            resolveJobs.Add(new Tuple<EObject, EStructuralFeature, string>(eobject, estructuralfeature, value));
+        }
+
 
         public EObject rootnode(XmlNode node)
         {
@@ -493,32 +510,58 @@ namespace Ecore.Xmi
 
             String segment = path.Dequeue();
 
-            foreach (EObject content in current.eContents())
+            foreach (EStructuralFeature feature in current.eClass().eAllContainments)
             {
-                if (content is ENamedElement)
-                {
 
-                    if ((content as ENamedElement).name == segment)
+                
+
+                if (segment.StartsWith("@"))
+                {
+                    var startIndex = 1;
+                    var endIndex = segment.LastIndexOf(".");
+                    var length = endIndex - startIndex;
+                    var featurename = segment.Substring(startIndex, length);
+
+                    if (feature.name == featurename)
                     {
-                        return resolveRecurr(path, content);
+                        var length2 = segment.Length - endIndex -1;
+                        var array_index = Int32.Parse(segment.Substring(endIndex + 1, length2));
+
+                        var enumerable = current.eGet(feature) as IEnumerable<EObject>;
+
+                        var list = enumerable.ToList();
+
+                        //TODO list of primitives/objects?
+
+                        var item = list[array_index];
+
+                        return resolveRecurr(path, item);
                     }
+
                 }
+                else
+                {
+                    return resolveRecurr(path, current.eGet(feature) as EObject);
+                }
+
             }
+
 
             return null;
         }
 
         protected EObject resolveEObject(string specification)
         {
-
+            
 
             if (specification == null)
             {
                 return null;
             }
-            else if (specification.StartsWith("#//"))
+            //else if (specification.StartsWith("#//") || specification.StartsWith("//"))
+            else if(Regex.IsMatch(specification, "#?//"))
             {
-                var name = specification.Replace("#//", "");
+                var name = Regex.Replace(specification, "#?//", "");
 
                 var segments = name.Split('/');
 
@@ -527,7 +570,11 @@ namespace Ecore.Xmi
 
                 return resolveRecurr(stack, root);
 
-
+            }
+            else if(registry.ContainsKey(specification))
+            {
+                return registry[specification];
+                
             }
             else
             {
@@ -538,42 +585,6 @@ namespace Ecore.Xmi
         }
 
 
-
-
-        protected bool getBoolean(string innertext, bool default_)
-        {
-            if (innertext != null)
-            {
-                return innertext == "true" ? true : false;
-            }
-
-            return default_;
-        }
-
-
-        protected int getInteger(string innertext, int default_)
-        {
-            if (innertext != null)
-            {
-                try
-                {
-                    return Int32.Parse(innertext);
-                }
-                catch (FormatException e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
-                catch (OverflowException e)
-                {
-                    Debug.WriteLine(e.Message);
-                }
-
-                return default_;
-
-            }
-
-            return default_;
-        }
 
 
     }
