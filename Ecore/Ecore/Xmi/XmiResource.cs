@@ -539,7 +539,7 @@ namespace Ecore.Xmi
                     }
 
                 }
-                else
+                else if(feature.name == segment)
                 {
                     return resolveRecurr(path, current.eGet(feature) as EObject);
                 }
@@ -566,7 +566,7 @@ namespace Ecore.Xmi
                 var segments = name.Split('/');
 
 
-                var stack = new Queue<String>(name.Split('/'));
+                var stack = new Queue<String>(segments);
 
                 return resolveRecurr(stack, root);
 

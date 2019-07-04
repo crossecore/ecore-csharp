@@ -19,7 +19,7 @@ namespace EcoreTest
     {
 
 
-        //[TestMethod]
+        [TestMethod]
         public void Load()
         {
             EcorePackageImpl.init();
@@ -29,16 +29,13 @@ namespace EcoreTest
 
             
 
-            var epackage = resource.Load("C:/Users/Simon/Data/git2/crossecore/model/Ecore.ecore") as EPackage;
+            var epackage = resource.Load("C:/Users/Simon/Data/git2/crossecore/model/Ecore.ecore");
 
             
 
-            foreach (EClassifier c in epackage.eClassifiers)
-            {
-                Debug.WriteLine(c.name);
-            }
+          
 
-            resource.Save("");
+            //resource.Save("");
 
             Assert.IsNotNull(epackage);
 
