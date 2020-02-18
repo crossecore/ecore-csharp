@@ -629,7 +629,21 @@ namespace oclstdlib
 
         public bool isUnique<T2>(Func<T, T2> lambda)
         {
-            return this.size() == new Set<T>(this).collect(lambda).size();
+            var x = new Set<T>(this).collect(lambda);
+
+            var dictionary = new HashSet<object>();
+            foreach (object item in x) {
+                if (dictionary.Contains(item))
+                {
+                    return false;
+                }
+                else
+                {
+                    dictionary.Add(item);
+                }
+            }
+
+            return true;
         }
 
 
