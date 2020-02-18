@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Com.CrossEcore.Ecore</id>
+    <version>0.1.0</version>
+    <authors>Simon Schwichtenberg</authors>
+    <owners>Simon Schwichtenberg</owners>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">EPL-2.0</license>
+    <projectUrl>http://www.crossecore.com</projectUrl>
+    <description>Ecore and OCL C# runtime API</description>
+    <copyright>Copyright 2020</copyright>
+  </metadata>
+</package>
