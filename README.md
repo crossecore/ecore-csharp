@@ -1,3 +1,5 @@
+![.NET Core](https://github.com/crossecore/ecore-csharp/workflows/.NET%20Core/badge.svg?branch=master)
+
 # ecore-csharp
 
 CrossEcore is a framework for model-based software engineering targeting multiple platforms.
