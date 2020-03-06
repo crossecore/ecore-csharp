@@ -1,4 +1,5 @@
 ![.NET Core](https://github.com/crossecore/ecore-csharp/workflows/.NET%20Core/badge.svg?branch=master)
+![Nuget](https://img.shields.io/nuget/v/Com.CrossEcore.Ecore)
 
 # ecore-csharp
 
