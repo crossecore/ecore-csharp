@@ -18,12 +18,11 @@ jobs:
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       with:
-        projectBaseDir: Ecore
         args: >
           -Dsonar.organization=crossecore
           -Dsonar.projectKey=crossecore_ecore-csharp
-          -Dsonar.sources=Ecore/
-          -Dsonar.tests=EcoreTest/
+          -Dsonar.sources=Ecore/Ecore/Ecore/
+          -Dsonar.tests=Ecore/EcoreTest/
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
