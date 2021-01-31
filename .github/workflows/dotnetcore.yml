@@ -21,7 +21,7 @@ jobs:
         projectBaseDir: Ecore
         args: >
           -Dsonar.organization=crossecore
-          -Dsonar.projectKey=ecore-csharp
+          -Dsonar.projectKey=crossecore_ecore-csharp
           -Dsonar.sources=Ecore/
           -Dsonar.tests=EcoreTest/
       env:
