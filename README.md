@@ -1,5 +1,9 @@
 ![.NET Core](https://github.com/crossecore/ecore-csharp/workflows/.NET%20Core/badge.svg?branch=master)
 ![Nuget](https://img.shields.io/nuget/v/Com.CrossEcore.Ecore)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=crossecore_ecore-csharp&metric=ncloc)](https://sonarcloud.io/dashboard?id=crossecore_ecore-csharp)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=crossecore_ecore-csharp&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=crossecore_ecore-csharp)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=crossecore_ecore-csharp&metric=security_rating)](https://sonarcloud.io/dashboard?id=crossecore_ecore-csharp)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=crossecore_ecore-csharp&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=crossecore_ecore-csharp)
 
 # ecore-csharp
 
