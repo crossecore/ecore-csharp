@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.2" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.2" />
@@ -16,10 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ecore\Ecore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Serialization\" />
   </ItemGroup>
 
 </Project>

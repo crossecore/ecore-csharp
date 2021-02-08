@@ -10,14 +10,10 @@
     <Description>Ecore and OCL runtime API for C#</Description>
     <PackageProjectUrl>http://www.crossecore.org</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
     <PackageLicenseExpression>EPL-2.0</PackageLicenseExpression>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <OutputType>Library</OutputType>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-  </ItemGroup>
 
 </Project>
